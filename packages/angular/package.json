@@ -1,6 +1,6 @@
 {
-  "name": "@wireio/angular",
-  "version": "0.0.0",
+  "name": "@wireio/ui-angular",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -35,5 +35,9 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^18.2.0",
     "typescript": "~5.5.2"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   }
 }
