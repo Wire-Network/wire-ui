@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.wire-tabs {
+  width: 100%;
+}
+
+.tabs-header {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid var(--wire-tabs-border-color, #ddd);
+  margin-bottom: 1rem;
+}
+
+.tabs-content {
+  padding: 1rem 0;
+}

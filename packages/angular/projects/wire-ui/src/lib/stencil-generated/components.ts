@@ -1,0 +1,165 @@
+/* tslint:disable */
+/* auto-generated angular directive proxies */
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, NgZone } from '@angular/core';
+
+import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
+
+import { Components } from '@wireio/ui-library';
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'my-component',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class MyComponent {
+  protected el: HTMLMyComponentElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface MyComponent extends Components.MyComponent {}
+
+
+@ProxyCmp({
+  inputs: ['color', 'disabled', 'icon', 'iconPosition', 'label', 'loading', 'size', 'variant']
+})
+@Component({
+  selector: 'wire-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['color', 'disabled', 'icon', 'iconPosition', 'label', 'loading', 'size', 'variant'],
+})
+export class WireButton {
+  protected el: HTMLWireButtonElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireButton extends Components.WireButton {}
+
+
+@ProxyCmp({
+  inputs: ['actions', 'heading', 'icon']
+})
+@Component({
+  selector: 'wire-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actions', 'heading', 'icon'],
+})
+export class WireCard {
+  protected el: HTMLWireCardElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireCard extends Components.WireCard {}
+
+
+@ProxyCmp({
+  inputs: ['name', 'size']
+})
+@Component({
+  selector: 'wire-icon',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['name', 'size'],
+})
+export class WireIcon {
+  protected el: HTMLWireIconElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireIcon extends Components.WireIcon {}
+
+
+@ProxyCmp({
+  inputs: ['active', 'disabled', 'tab']
+})
+@Component({
+  selector: 'wire-tab',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['active', 'disabled', 'tab'],
+})
+export class WireTab {
+  protected el: HTMLWireTabElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['tabClick']);
+  }
+}
+
+
+export declare interface WireTab extends Components.WireTab {
+
+  tabClick: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'wire-tabs',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class WireTabs {
+  protected el: HTMLWireTabsElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireTabs extends Components.WireTabs {}
+
+
+@ProxyCmp({
+  inputs: ['position']
+})
+@Component({
+  selector: 'wire-toast',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['position'],
+})
+export class WireToast {
+  protected el: HTMLWireToastElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireToast extends Components.WireToast {}
+
+

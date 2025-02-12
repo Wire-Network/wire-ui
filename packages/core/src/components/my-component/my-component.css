@@ -1,0 +1,23 @@
+:host {
+  display: block;
+
+  .my-grid-header {
+    @apply text-lg font-bold mb-4 max-w-xl mx-auto;
+
+    h2 {
+      @apply mb-0;
+    }
+  }
+
+  .my-grid {
+    @apply grid grid-cols-3 justify-center gap-4 max-w-xl mx-auto mb-5;
+  }
+
+  .icons-grid {
+    @apply grid grid-cols-6 justify-center gap-4 max-w-xl mx-auto mb-5;
+
+    wire-icon {
+      @apply text-gray-700;
+    }
+  }
+}

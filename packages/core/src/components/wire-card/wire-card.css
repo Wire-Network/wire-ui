@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  
+  .wire-card {
+    @apply block bg-white rounded-3xl border border-gray-200 ring-[1px] ring-gray-200 px-6 py-5 mb-6 shadow-md box-border;
+  }
+
+  header {
+    @apply flex justify-between items-center pb-4;
+
+    .title {
+      @apply flex justify-between items-center gap-2 text-lg font-normal my-0;
+
+      wire-icon {
+        @apply text-primary;
+      }
+    }
+  }
+
+  .body {
+    @apply text-sm text-gray-500 font-normal;
+  }
+}

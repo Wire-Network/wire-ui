@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import fonts */
+@import url("https://use.typekit.net/wzc4pzt.css");
+
+:root {
+  /** 
+    Wire Top Level Branding Theme 
+    https://www.figma.com/design/5fMsYY3cWYIoTHPUsCmkhl/
+  */
+  --blue: #3981fe;
+  --blue-dark: #3772DC;
+  --blue-light: #4F8EFE;
+  --purple: #8d4bf6;
+  --purple-dark: #7c42d8;
+  --purple-light: #985df7;
+  --green: #44E2A1;
+  --teal: #2DB3B3;
+  --red: #CB0C59;
+  --rose: #DD517E;
+  --gold: #E68E35;
+  --navy: #556CC9;
+  --periwinkle: #7A98ED;
+  --sky-blue: #59CCEC;
+  --gray-95: #1D1D1D;
+  --gray-05: #FFFFFD;
+
+  --gradient-primary: linear-gradient( 0deg, var(--blue) 0%, var(--purple) 100% );
+  --gradient-primary-50: linear-gradient( 0deg, rgb(var(--blue-rgb),.3) 0%, rgb(var(--purple-rgb), .3) 100% );
+  --button-gradient: linear-gradient(120deg, rgba(106,54,255,1) 0%, rgba(172,95,230,1) 40%, rgba(56,127,254,1) 80%, rgba(68,178,245,1) 100%);
+  --svg-fill-light: invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg) brightness(106%) contrast(101%);
+  --svg-fill-dark: invert(0%) sepia(100%) saturate(0%) hue-rotate(284deg) brightness(96%) contrast(107%);
+  --svg-fill-primary: brightness(0) saturate(100%) invert(36%) sepia(69%) saturate(1170%) hue-rotate(195deg) brightness(109%) contrast(99%);
+  --svg-fill-secondary: brightness(0) saturate(100%) invert(34%) sepia(50%) saturate(4678%) hue-rotate(248deg) brightness(98%) contrast(97%);
+
+  /* RGB Values */
+  --blue-rgb: 59, 129, 254;
+  --purple-rgb: 141, 75, 246;
+  --green-rgb: 68, 226, 161;
+  --teal-rgb: 45, 179, 179;
+  --red-rgb: 203, 12, 89;
+  --rose-rgb: 221, 81, 126;
+  --gold-rgb: 230, 142, 53;
+  --navy-rgb: 85, 108, 201;
+  --periwinkle-rgb: 122, 152, 237;
+  --sky-blue-rgb: 89, 204, 236;
+  --gray-95-rgb: 29, 29, 29;
+  --gray-05-rgb: 255, 255, 253;
+
+  /* Gray Steps */
+  --gray-100: rgb(var(--gray-95-rgb), 1);
+  --gray-95: #1D1D1D;
+  --gray-90: #282828;
+  --gray-80: #3f3f3f;
+  --gray-70: #565655;
+  --gray-60: #6c6c6b;
+  --gray-50: #8e8e8d;
+  --gray-40: #b0b0af;
+  --gray-30: #c6c6c5;
+  --gray-20: #dddddb;
+  --gray-10: #f4f4f2;
+  --gray-05: #fffffd;
+
+  /** Sizing Variables **/
+  --menu-width: 0px;
+  --header-height: 60px;
+  --top-bar-height: 40px;
+  --footer-height: 500px;
+
+  @screen md {
+      --menu-width: 300px;
+      --header-height: 80px;
+      --top-bar-height: 50px;
+  }
+  
+  --page-title-height: 500px;
+  @media (max-width: 575px) {
+      --page-title-height: 350px;
+  }
+
+  /** Ionic Variables **/
+  --ion-color-primary: #3B81FE;
+  --ion-color-primary-rgb: 59,129,254;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #3472e0;
+  --ion-color-primary-tint: #4f8efe;
+
+  --ion-color-secondary: #8D4BF6;
+  --ion-color-secondary-rgb: 141,75,246;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #7c42d8;
+  --ion-color-secondary-shade-rgb: 124, 66, 216;
+  --ion-color-secondary-tint: #985df7;
+    --ion-color-secondary-dark: rgb(233, 220, 255);
+
+  --ion-color-tertiary: #2DB3B3;
+  --ion-color-tertiary-rgb: 45,179,179;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0,0,0;
+  --ion-color-tertiary-shade: #289e9e;
+  --ion-color-tertiary-tint: #42bbbb;
+
+  --ion-color-success: #44E2A1;
+  --ion-color-success-rgb: 68,226,161;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0,0,0;
+  --ion-color-success-shade: #3cc78e;
+  --ion-color-success-tint: #57e5aa;
+
+  --ion-color-warning: #E68E35;
+  --ion-color-warning-rgb: 230,142,53;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #ca7d2f;
+  --ion-color-warning-tint: #e99949;
+
+  --ion-color-danger: #CB0C59;
+  --ion-color-danger-rgb: 203,12,89;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #b30b4e;
+  --ion-color-danger-tint: #d0246a;
+
+  --ion-color-light: #FFFFFD;
+  --ion-color-light-rgb: 255,255,253;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0,0,0;
+  --ion-color-light-shade: #e0e0df;
+  --ion-color-light-tint: #fffffd;
+
+  --ion-color-medium: #B0B0AF;
+  --ion-color-medium-rgb: 176,176,175;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0,0,0;
+  --ion-color-medium-shade: #9b9b9a;
+  --ion-color-medium-tint: #b8b8b7;
+
+  --ion-color-dark: #3d3d3d;
+  --ion-color-dark-rgb: 61,61,61;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-shade: #363636;
+  --ion-color-dark-tint: #505050;
+
+  /* Ionic Underlying Colors */
+  --ion-background-color: #F8F7FB;
+  --ion-background-color-rgb: 255, 255, 255;
+  --ion-border-color: #E3E3E3;
+  --ion-toolbar-border-color: rgb(0, 0, 0, 0.15);
+  --ion-item-border-color: rgb(0, 0, 0, 0.075);
+  --ion-item-background: #ffffff;
+  --ion-item-background-hover: #F4F4F2;
+  --ion-toolbar-background: #F4F4F2;
+
+  /* Social Media Colors */
+  --facebook: #4267b2;
+  --twitter: #1c9cea;
+  --youtube: #f70000;
+  --instagram: #ee752e;
+  --linkedin: #0073af;
+  --medium: #ffc017;
+  --discord: #485ef4;
+  --twitch: #8c44f7;
+  --link: #808080;
+
+  /* NGX Json Viewer Styling */
+  --ngx-json-string: #2dd36f; 
+  --ngx-json-number: lightsalmon;
+  --ngx-json-boolean: indianred;
+  --ngx-json-date: #2dd36f;
+  --ngx-json-array: #4aafff;
+  --ngx-json-object: #3880ff;
+  --ngx-json-function: #3880ff;
+  --ngx-json-null: rgb(0, 0, 0, 0.3);
+  --ngx-json-null-bg: rgb(0, 0, 0, 0);
+  --ngx-json-undefined: #5c6370;
+  --ngx-json-toggler: #3880ff;
+  --ngx-json-key: rgb(0, 0, 0, 0.6);
+  --ngx-json-separator: rgb(0, 0, 0, 0.5);
+  --ngx-json-value: #222;
+  --ngx-json-font-family: 'Courier Prime', monospace !important;
+  --ngx-json-font-family: 12px;
+
+  /* RGB values for our colors (you can get these from the hex values) */
+  --blue-rgb: 0, 122, 255;
+  --gold-rgb: 255, 184, 0;
+  --teal-rgb: 48, 176, 199;
+  --rose-rgb: 255, 45, 85;
+  --red-rgb: 255, 59, 48;
+}

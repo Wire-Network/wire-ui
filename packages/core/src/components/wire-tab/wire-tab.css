@@ -1,0 +1,25 @@
+:host {
+  display: inline-block;
+}
+
+.wire-tab {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  color: var(--wire-tab-color, #666);
+}
+
+.wire-tab:hover:not(.disabled) {
+  color: var(--wire-tab-hover-color, #333);
+}
+
+.wire-tab.active {
+  color: var(--wire-tab-active-color, #3880ff);
+  border-bottom-color: var(--wire-tab-active-border-color, #3880ff);
+}
+
+.wire-tab.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} 
