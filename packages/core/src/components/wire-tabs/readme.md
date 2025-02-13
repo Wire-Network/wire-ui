@@ -7,14 +7,14 @@
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [wire-tab](.)
+ - [my-component](../my-component)
 
 ### Graph
 ```mermaid
 graph TD;
-  wire-tabs --> wire-tab
+  my-component --> wire-tabs
   style wire-tabs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

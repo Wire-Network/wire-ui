@@ -20,6 +20,7 @@
  - [my-component](../my-component)
  - [wire-button](../wire-button)
  - [wire-card](../wire-card)
+ - [wire-toast](../wire-toast)
 
 ### Graph
 ```mermaid
@@ -27,6 +28,7 @@ graph TD;
   my-component --> wire-icon
   wire-button --> wire-icon
   wire-card --> wire-icon
+  wire-toast --> wire-icon
   style wire-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

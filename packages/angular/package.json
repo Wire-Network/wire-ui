@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-angular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -39,5 +39,18 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "main": "./dist/wire-ui/fesm2022/wireio-angular-ui.mjs",
+  "module": "./dist/wire-ui/fesm2022/wireio-angular-ui.mjs",
+  "types": "./dist/wire-ui/lib/wire-ui.module.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/wire-ui/lib/wire-ui.module.d.ts",
+      "default": "./dist/wire-ui/fesm2022/wireio-angular-ui.mjs"
+    }
   }
 }
