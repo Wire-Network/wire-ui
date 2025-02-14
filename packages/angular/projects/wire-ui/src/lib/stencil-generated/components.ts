@@ -8,27 +8,6 @@ import { Components } from '@wireio/ui-library';
 
 
 @ProxyCmp({
-})
-@Component({
-  selector: 'my-component',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: '<ng-content></ng-content>',
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
-})
-export class MyComponent {
-  protected el: HTMLMyComponentElement;
-  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
-    c.detach();
-    this.el = r.nativeElement;
-  }
-}
-
-
-export declare interface MyComponent extends Components.MyComponent {}
-
-
-@ProxyCmp({
   inputs: ['color', 'disabled', 'icon', 'iconPosition', 'label', 'loading', 'size', 'variant']
 })
 @Component({

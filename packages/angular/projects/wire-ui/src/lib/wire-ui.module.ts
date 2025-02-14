@@ -1,22 +1,13 @@
-import { APP_INITIALIZER, NgModule, inject } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { defineCustomElements } from '@wireio/ui-library/dist/loader';
 import { DIRECTIVES } from './stencil-generated';
 
-function initializeCustomElements() {
-  return () => {
-    return defineCustomElements();
-  };
-}
+defineCustomElements();
 
 @NgModule({
   declarations: [...DIRECTIVES],
   exports: [...DIRECTIVES],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeCustomElements,
-      multi: true
-    }
-  ]
+  imports: []
 })
-export class WireUiModule {}
+export class WireUiModule { }
+export * from './stencil-generated/components';

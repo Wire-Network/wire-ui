@@ -34,9 +34,12 @@ export const config: Config = {
     // Angular output target
     angularOutputTarget({
       componentCorePackage: '@wireio/ui-library',
-      outputType: 'component',
       directivesProxyFile: '../angular/projects/wire-ui/src/lib/stencil-generated/components.ts',
-      directivesArrayFile: '../angular/projects/wire-ui/src/lib/stencil-generated/index.ts'
+      directivesArrayFile: '../angular/projects/wire-ui/src/lib/stencil-generated/index.ts',
+      valueAccessorConfigs: [],
+      excludeComponents: [
+        'my-component'
+      ]
     }),
     // React output target
     reactOutputTarget({
