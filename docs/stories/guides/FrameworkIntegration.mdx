@@ -1,0 +1,276 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guides/Framework Integration" />
+
+# Framework Integration
+
+Wire UI Library is built with Stencil.js, which allows it to be used in various frameworks. This guide explains how to integrate the components with different frameworks.
+
+## React Integration
+
+### Installation
+
+```bash
+npm install @wireio/ui-library @wireio/ui-library-react
+```
+
+### Basic Usage
+
+```jsx
+import React from 'react';
+import { WireButton, WireCard, WireIcon } from '@wireio/ui-library-react';
+
+function App() {
+  return (
+    <div>
+      <WireCard>
+        <h2>Hello from React!</h2>
+        <p>This is a Wire UI card component used in React.</p>
+        <WireButton variant="primary">
+          <WireIcon name="settings" size="small"></WireIcon>
+          Settings
+        </WireButton>
+      </WireCard>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Event Handling
+
+```jsx
+import React, { useState } from 'react';
+import { WireButton, WireToast } from '@wireio/ui-library-react';
+
+function ToastExample() {
+  const [count, setCount] = useState(0);
+
+  const showToast = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+
+    // Create and dispatch the custom event
+    const event = new CustomEvent('show-toast', {
+      detail: {
+        type: 'info',
+        message: `Button clicked ${newCount} times!`,
+        duration: 3000,
+        position: 'top-right',
+      },
+      bubbles: true,
+      composed: true,
+    });
+    document.dispatchEvent(event);
+  };
+
+  return (
+    <div>
+      <WireButton variant="primary" onClick={showToast}>
+        Click Me
+      </WireButton>
+      <WireToast></WireToast>
+    </div>
+  );
+}
+```
+
+## Angular Integration
+
+### Installation
+
+```bash
+npm install @wireio/ui-library @wireio/ui-library-angular
+```
+
+### Module Setup
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { WireUiModule } from '@wireio/ui-library-angular';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, WireUiModule],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+### Component Usage
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <wire-card>
+      <h2>Hello from Angular!</h2>
+      <p>This is a Wire UI card component used in Angular.</p>
+      <wire-button variant="primary" (click)="handleClick()">
+        <wire-icon name="settings" size="small"></wire-icon>
+        Settings
+      </wire-button>
+    </wire-card>
+    <wire-toast></wire-toast>
+  `,
+})
+export class AppComponent {
+  handleClick() {
+    // Create and dispatch the custom event
+    const event = new CustomEvent('show-toast', {
+      detail: {
+        type: 'success',
+        message: 'Button clicked!',
+        duration: 3000,
+        position: 'top-right',
+      },
+      bubbles: true,
+      composed: true,
+    });
+    document.dispatchEvent(event);
+  }
+}
+```
+
+## Vue Integration
+
+### Installation
+
+```bash
+npm install @wireio/ui-library
+```
+
+### Main.js Setup
+
+```javascript
+// main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import { defineCustomElements } from '@wireio/ui-library/dist/loader';
+
+// Register the custom elements
+defineCustomElements();
+
+createApp(App).mount('#app');
+```
+
+### Component Usage
+
+```vue
+<!-- App.vue -->
+<template>
+  <wire-card>
+    <h2>Hello from Vue!</h2>
+    <p>This is a Wire UI card component used in Vue.</p>
+    <wire-button variant="primary" @click="handleClick">
+      <wire-icon name="settings" size="small"></wire-icon>
+      Settings
+    </wire-button>
+  </wire-card>
+  <wire-toast></wire-toast>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  methods: {
+    handleClick() {
+      // Create and dispatch the custom event
+      const event = new CustomEvent('show-toast', {
+        detail: {
+          type: 'info',
+          message: 'Button clicked!',
+          duration: 3000,
+          position: 'top-right',
+        },
+        bubbles: true,
+        composed: true,
+      });
+      document.dispatchEvent(event);
+    },
+  },
+};
+</script>
+```
+
+## Vanilla JavaScript
+
+### Installation
+
+```bash
+npm install @wireio/ui-library
+```
+
+### HTML Setup
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wire UI Example</title>
+    <script type="module">
+      import { defineCustomElements } from './node_modules/@wireio/ui-library/dist/loader/index.js';
+      defineCustomElements();
+    </script>
+  </head>
+  <body>
+    <wire-card>
+      <h2>Hello from Vanilla JS!</h2>
+      <p>This is a Wire UI card component used in vanilla JavaScript.</p>
+      <wire-button id="myButton" variant="primary">
+        <wire-icon name="settings" size="small"></wire-icon>
+        Settings
+      </wire-button>
+    </wire-card>
+    <wire-toast></wire-toast>
+
+    <script>
+      document.getElementById('myButton').addEventListener('click', function () {
+        // Create and dispatch the custom event
+        const event = new CustomEvent('show-toast', {
+          detail: {
+            type: 'success',
+            message: 'Button clicked!',
+            duration: 3000,
+            position: 'top-right',
+          },
+          bubbles: true,
+          composed: true,
+        });
+        document.dispatchEvent(event);
+      });
+    </script>
+  </body>
+</html>
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Components not rendering**: Make sure you've called `defineCustomElements()` before using the components.
+
+2. **Styling issues**: The components include their own styles, but you might need to adjust your global styles to avoid conflicts.
+
+3. **Event handling**: Remember that custom elements use custom events. In frameworks like React, you'll need to use the appropriate event binding syntax.
+
+4. **TypeScript errors**: If you're using TypeScript, make sure you've included the component types in your project.
+
+### Getting Help
+
+If you encounter issues not covered here, please:
+
+1. Check the [GitHub repository](https://github.com/wireio/ui-library) for known issues
+2. Join our [community Discord](https://discord.gg/wireio) for real-time help
+3. Submit a detailed bug report if you believe you've found a new issue

@@ -24,6 +24,9 @@ export class MyComponent {
   render() {
     return <div>
       <div class="my-grid-header">
+        <wire-logo mode="full-color"></wire-logo>
+      </div>
+      <div class="my-grid-header">
         <h2>Toast</h2>
       </div>
       <div class="my-grid">

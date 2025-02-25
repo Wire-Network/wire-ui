@@ -1,0 +1,90 @@
+<!-- This file is automatically injected into the preview iframe -->
+<script>
+  // Create a global object to hold the Wire UI components
+  window.WireUI = window.WireUI || {};
+  
+  // Define a simple mock implementation for the Stencil components
+  window.WireUI.defineCustomElements = function() {
+    console.log('Using mock implementation for Wire UI components');
+    return Promise.resolve();
+  };
+  
+  // Define mock components if they don't exist
+  if (typeof customElements !== 'undefined' && !customElements.get('wire-button')) {
+    class WireButton extends HTMLElement {
+      static get observedAttributes() {
+        return ['variant', 'size', 'disabled'];
+      }
+      
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        this.render();
+        this.addEventListener('click', this.handleClick);
+      }
+      
+      disconnectedCallback() {
+        this.removeEventListener('click', this.handleClick);
+      }
+      
+      handleClick(event) {
+        if (this.hasAttribute('disabled')) {
+          event.preventDefault();
+          return;
+        }
+        
+        this.dispatchEvent(new CustomEvent('click', { 
+          bubbles: true, 
+          composed: true,
+          detail: event 
+        }));
+      }
+      
+      attributeChangedCallback() {
+        this.render();
+      }
+      
+      render() {
+        const variant = this.getAttribute('variant') || 'primary';
+        const size = this.getAttribute('size') || 'medium';
+        const disabled = this.hasAttribute('disabled');
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+            }
+            button {
+              font-family: sans-serif;
+              font-weight: 500;
+              cursor: pointer;
+              transition: all 0.2s ease;
+              border-radius: 4px;
+              padding: ${size === 'small' ? '4px 8px' : size === 'large' ? '12px 24px' : '8px 16px'};
+              font-size: ${size === 'small' ? '12px' : size === 'large' ? '16px' : '14px'};
+              background-color: ${variant === 'primary' ? '#0066cc' : variant === 'secondary' ? '#f0f0f0' : 'transparent'};
+              color: ${variant === 'primary' ? 'white' : variant === 'secondary' ? '#333' : '#0066cc'};
+              border: ${variant === 'secondary' ? '1px solid #ccc' : 'none'};
+              opacity: ${disabled ? '0.5' : '1'};
+              pointer-events: ${disabled ? 'none' : 'auto'};
+            }
+          </style>
+          <button>
+            <slot></slot>
+          </button>
+        `;
+      }
+    }
+    
+    customElements.define('wire-button', WireButton);
+    console.log('Defined mock wire-button component');
+  }
+</script>
+
+<!-- We'll use a different approach to load the Stencil components -->
+<script>
+  console.log('Using mock components for Storybook');
+</script> 

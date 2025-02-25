@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Wire UI Library
+
+Welcome to the Wire UI Library documentation. This library provides a set of reusable UI components built with Stencil.js that can be used in various frameworks including React, Angular, and vanilla JavaScript.
+
+## Installation
+
+```bash
+npm install @wireio/ui-library
+```
+
+## Usage
+
+The components can be used in different frameworks:
+
+### Vanilla JS
+
+```html
+<script type="module">
+  import { defineCustomElements } from '@wireio/ui-library/dist/loader';
+  defineCustomElements();
+</script>
+
+<wire-button>Click me</wire-button>
+```
+
+### React
+
+```jsx
+import { WireButton } from '@wireio/ui-library-react';
+
+function App() {
+  return <WireButton>Click me</WireButton>;
+}
+```
+
+### Angular
+
+```typescript
+// In your module
+import { WireUiModule } from '@wireio/ui-library-angular';
+
+@NgModule({
+  imports: [WireUiModule],
+})
+export class AppModule {}
+
+// In your component template
+<wire-button>Click me</wire-button>;
+```
+
+## Components
+
+Browse the sidebar to see all available components and their documentation.
