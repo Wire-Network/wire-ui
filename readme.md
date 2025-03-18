@@ -18,10 +18,10 @@ npm install @wireio/ui-library
 
 For framework-specific wrappers:
 
-```bash
-# React
-npm install @wireio/ui-library-react
+<!-- # React
+npm install @wireio/ui-library-react -->
 
+```bash
 # Angular
 npm install @wireio/ui-library-angular
 ```
@@ -45,7 +45,7 @@ npm install @wireio/ui-library-angular
 </html>
 ```
 
-### React
+<!-- ### React
 
 ```jsx
 import React from 'react';
@@ -54,7 +54,7 @@ import { WireButton } from '@wireio/ui-library-react';
 function App() {
   return <WireButton variant="primary">Click Me</WireButton>;
 }
-```
+``` -->
 
 ### Angular
 
