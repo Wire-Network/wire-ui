@@ -1,9 +1,6 @@
 import React from 'react';
-// Import the mock helper instead of the actual loader
-import { defineCustomElements } from '../../.storybook/mockLoader';
-
-// Register the custom elements
-defineCustomElements();
+// We no longer need to import and call defineCustomElements here
+// as it's now handled centrally in preview.js
 
 export default {
   title: 'Components/Icon',
@@ -11,9 +8,40 @@ export default {
   argTypes: {
     name: {
       control: { type: 'select' },
-      options: ['home', 'settings', 'user', 'notification', 'search', 'menu'],
+      options: [
+        'arrows-left-right', 
+        'bell', 
+        'cardholder', 
+        'chat', 
+        'coin', 
+        'coin-vertical', 
+        'coins', 
+        'copy', 
+        'cube', 
+        'currency-btc', 
+        'currency-eth', 
+        'database', 
+        'dots-horizontal', 
+        'dots-vertical', 
+        'filter', 
+        'gear', 
+        'globe', 
+        'guage', 
+        'hard-drives', 
+        'list', 
+        'money', 
+        'play', 
+        'play-circle', 
+        'qr-code', 
+        'search', 
+        'stack', 
+        'stack-minus', 
+        'stack-plus', 
+        'star', 
+        'support'
+      ],
       description: 'The name of the icon to display',
-      defaultValue: 'home',
+      defaultValue: 'database',
     },
     size: {
       control: { type: 'select' },
@@ -36,8 +64,12 @@ export default {
 };
 
 const Template = (args) => {
+  // Create a key that changes when any prop changes to force re-rendering
+  const key = `${args.name}-${args.size}-${args.color || 'default'}`;
+  
   return (
     <wire-icon
+      key={key}
       name={args.name}
       size={args.size}
       color={args.color}
@@ -47,37 +79,68 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  name: 'home',
+  name: 'stack',
   size: 'medium',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  name: 'home',
+  name: 'stack',
   size: 'small',
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  name: 'home',
+  name: 'stack',
   size: 'large',
 };
 
 export const Colored = Template.bind({});
 Colored.args = {
-  name: 'notification',
-  color: '#ff5722',
+  name: 'stack',
+  color: 'var(--blue)',
 };
 
 export const IconGallery = () => {
-  const icons = ['home', 'settings', 'user', 'notification', 'search', 'menu'];
+  const icons = [
+    'arrows-left-right', 
+    'bell', 
+    'cardholder', 
+    'chat', 
+    'coin', 
+    'coin-vertical', 
+    'coins', 
+    'copy', 
+    'cube', 
+    'currency-btc', 
+    'currency-eth', 
+    'database', 
+    'dots-horizontal', 
+    'dots-vertical', 
+    'filter', 
+    'gear', 
+    'globe', 
+    'guage', 
+    'hard-drives', 
+    'list', 
+    'money', 
+    'play', 
+    'play-circle', 
+    'qr-code', 
+    'search', 
+    'stack', 
+    'stack-minus', 
+    'stack-plus', 
+    'star', 
+    'support'
+  ];
   
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', textAlign: 'center' }}>
       {icons.map(icon => (
-        <div key={icon} style={{ textAlign: 'center', padding: '20px', border: '1px solid #eee', borderRadius: '8px' }}>
+        <div key={icon} style={{ padding: '15px', border: '1px solid #eee', borderRadius: '5px' }}>
           <wire-icon name={icon} size="large"></wire-icon>
-          <p style={{ marginTop: '10px' }}>{icon}</p>
+          <p style={{ marginTop: '10px', fontSize: '12px' }}>{icon}</p>
         </div>
       ))}
     </div>

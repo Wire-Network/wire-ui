@@ -1,9 +1,16 @@
+// Import the mockLoader (which handles loading CSS and components)
+import { defineCustomElements } from './mockLoader';
+
+// Initialize the components once when Storybook loads
+defineCustomElements().catch(error => {
+  console.error('Preview.js: Failed to load Wire UI components:', error);
+});
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
-    actions: { 
-      // Remove argTypesRegex and use fn() in your stories instead
-      // For example: args: { onClick: fn() } 
+    actions: {
+      argTypesRegex: '^on[A-Z].*',
     },
     controls: {
       matchers: {
@@ -21,4 +28,4 @@ const preview = {
   },
 };
 
-export default preview; 
+export default preview;

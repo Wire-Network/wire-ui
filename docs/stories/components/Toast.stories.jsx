@@ -1,10 +1,7 @@
 import React from 'react';
-// Import the mock helper instead of the actual loader
-import { defineCustomElements } from '../../.storybook/mockLoader';
+// We no longer need to import and call defineCustomElements here
+// as it's now handled centrally in preview.js
 import { fn } from '@storybook/test';
-
-// Register the custom elements
-defineCustomElements();
 
 export default {
   title: 'Components/Toast',

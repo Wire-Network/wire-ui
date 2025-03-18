@@ -1,34 +1,62 @@
 /**
- * Custom loader for Stencil components
- * This file provides a mock implementation to handle Stencil components in Storybook
- * since direct imports from the dist/loader may cause issues.
+ * Stencil Component Loader for Storybook
+ * This file handles loading Stencil custom elements from the npm package
  */
 
-// Create a mock implementation that doesn't rely on direct imports
-export const defineCustomElements = async () => {
-  // Check if custom elements are already defined
-  const alreadyDefined = customElements.get('wire-button');
-  
-  if (alreadyDefined) {
-    console.log('Wire UI custom elements are already defined');
-    return Promise.resolve();
-  }
+// Import CSS from the npm package 
+import '@wireio/ui-library/dist/wire-ui/wire-ui.css';
 
-  console.log('Attempting to register Wire UI custom elements');
-  
+/**
+ * Define custom elements by dynamically loading the loader module
+ * Uses dynamic imports to avoid Vite build-time resolution issues
+ */
+export const defineCustomElements = async () => {
   try {
-    // Try to dynamically import the loader if available
-    if (window.WireUI && window.WireUI.defineCustomElements) {
-      await window.WireUI.defineCustomElements();
-      console.log('Successfully loaded Wire UI components from global object');
-      return Promise.resolve();
-    }
+    console.log('Attempting to load Wire UI components...');
     
-    // Fallback to mock implementation
-    console.log('Using fallback mock implementation for Wire UI components');
+    // Use a dynamic import which is more compatible with Vite
+    const module = await import('@wireio/ui-library/dist/loader');
+    
+    // Call the component loader with the window object
+    await module.defineCustomElements(window);
+    
+    console.log('Successfully loaded Wire UI components');
+    
+    // Setup navigation helper to refresh components when changing stories
+    setupNavigationHelper();
+    
     return Promise.resolve();
   } catch (error) {
-    console.error('Error loading Wire UI components:', error);
+    console.error('Failed to load Wire UI components:', error);
     return Promise.reject(error);
   }
-}; 
+};
+
+/**
+ * Setup helper to detect navigation between stories and refresh components
+ */
+function setupNavigationHelper() {
+  if (window.storyNavHelper) return;
+  
+  window.storyNavHelper = true;
+  
+  // Listen for Storybook's internal events
+  window.addEventListener('storybook-channel-created', () => {
+    console.log('Storybook channel created, setting up navigation helper');
+    
+    // Patch history.pushState to detect navigation
+    const originalPushState = history.pushState;
+    history.pushState = function() {
+      originalPushState.apply(this, arguments);
+      
+      // Small delay to let the story render first
+      setTimeout(() => {
+        // Force a small layout shift to trigger re-render
+        document.body.style.minHeight = '100.01vh';
+        setTimeout(() => {
+          document.body.style.minHeight = '';
+        }, 10);
+      }, 200);
+    };
+  });
+}

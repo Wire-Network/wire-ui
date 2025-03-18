@@ -1,4 +1,5 @@
 import { dirname, join } from "path";
+
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: [
@@ -11,7 +12,7 @@ const config = {
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-mdx-gfm"),
-    "@chromatic-com/storybook"
+    getAbsolutePath("@chromatic-com/storybook")
   ],
 
   framework: {
@@ -21,50 +22,30 @@ const config = {
 
   docs: {
     autodocs: true,
-    defaultName: 'Documentation',
+    defaultName: 'Documentation'
   },
 
   typescript: {
     reactDocgen: "react-docgen-typescript"
   },
   
-  // Add Vite configuration to handle custom elements
-  async viteFinal(config) {
-    return {
-      ...config,
-      // Configure esbuild for JSX
-      esbuild: {
-        ...config.esbuild,
-        jsxFactory: 'React.createElement',
-        jsxFragment: 'React.Fragment',
-      },
-      // Optimize dependencies
-      optimizeDeps: {
-        ...config.optimizeDeps,
-        include: [
-          ...(config.optimizeDeps?.include || []),
-          'react',
-          'react-dom',
-        ],
-      },
-      // Resolve configuration
-      resolve: {
-        ...config.resolve,
-        dedupe: [...(config.resolve?.dedupe || []), 'react', 'react-dom'],
-        alias: {
-          ...config.resolve?.alias,
-          '@wireio/ui-library': join(process.cwd(), '../packages/core'),
-        },
-      },
-      // Add plugins to handle Stencil components
-      plugins: [
-        ...config.plugins || [],
-      ],
-    };
-  },
+  staticDirs: [
+    // Serve package assets at the /assets path
+    { from: '../node_modules/@wireio/ui-library/dist/assets', to: '/assets' }
+  ],
   
-  // Remove the previewAnnotations array since it's causing issues
-  // We'll handle the component loading in preview.js instead
+  // Add viteFinal to handle custom elements/web components properly
+  viteFinal: async (config) => {
+    // Ensure Vite correctly handles custom elements
+    if (!config.optimizeDeps) config.optimizeDeps = {};
+    if (!config.optimizeDeps.exclude) config.optimizeDeps.exclude = [];
+    
+    // Exclude Stencil-generated web components from optimization
+    // This helps avoid issues with Vite's optimization process
+    config.optimizeDeps.exclude.push('@wireio/ui-library');
+    
+    return config;
+  }
 };
 
 export default config;

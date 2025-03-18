@@ -1,59 +1,7 @@
 import React from 'react';
 import { fn } from '@storybook/test';
-
-// Add custom styles for the button component
-const buttonStyles = `
-  wire-button {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  wire-button[variant="primary"] {
-    background-color: #0066cc;
-    color: white;
-    border: none;
-  }
-  
-  wire-button[variant="secondary"] {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-  }
-  
-  wire-button[variant="tertiary"] {
-    background-color: transparent;
-    color: #0066cc;
-    border: none;
-  }
-  
-  wire-button[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  wire-button[size="small"] {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-  
-  wire-button[size="medium"] {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-  
-  wire-button[size="large"] {
-    font-size: 16px;
-    padding: 12px 24px;
-  }
-`;
-
-// No need to define the custom element - we'll use the one from Stencil
-// The defineButtonElement function is removed
+// We no longer need to import and call defineCustomElements here
+// as it's now handled centrally in preview.js
 
 export default {
   title: 'Components/Button',
@@ -66,13 +14,30 @@ export default {
     },
   },
   argTypes: {
-    variant: {
+    label: {
+      control: { type: 'text' },
+      description: 'The text displayed on the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Button' },
+      },
+    },
+    color: {
       control: { type: 'select' },
       options: ['primary', 'secondary', 'tertiary'],
-      description: 'The visual style of the button',
+      description: 'The color of the button',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'primary' },
+      },
+    },
+    variant: {
+      control: { type: 'select' },
+      options: ['filled', 'outline'],
+      description: 'The visual style of the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'filled' },
       },
     },
     size: {
@@ -99,18 +64,33 @@ export default {
         type: { summary: 'function' },
       },
     },
-    children: {
-      control: { type: 'text' },
-      description: 'The content of the button',
+    icon: {
+      control: { type: 'select' },
+      options: ['arrows-left-right', 'bell', 'cardholder', 'chat', 'coin-vertical', 'coin', 'coins', 'copy', 'cube', 'currency-btc', 'currency-eth', 'currency', 'database', 'dots-horizontal', 'dots-vertical'],
+      description: 'The icon to display on the button',
       table: {
         type: { summary: 'string' },
       },
     },
+    iconPosition: {
+      control: { type: 'select' },
+      options: ['left', 'right'],
+      description: 'The position of the icon on the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+    children: {
+      table: {
+        disable: true
+      }
+    }
   },
 };
 
 const Template = (args) => {
-  const { children, ...props } = args;
+  const { ...props } = args;
   
   // Handle the onClick event
   const handleClick = (event) => {
@@ -120,37 +100,36 @@ const Template = (args) => {
   };
   
   return (
-    <>
-      <style>{buttonStyles}</style>
-      <wire-button
-        variant={props.variant}
-        size={props.size}
-        disabled={props.disabled}
-        onClick={handleClick}
-      >
-        {children || 'Button'}
-      </wire-button>
-    </>
+    <wire-button
+      color={props.color}
+      variant={props.variant}
+      size={props.size}
+      icon={props.icon}
+      iconPosition={props.iconPosition}
+      disabled={props.disabled}
+      label={props.label || 'Button'}
+      onClick={handleClick}
+    />
   );
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  variant: 'primary',
+  color: 'primary',
   children: 'Primary Button',
   onClick: fn(),
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  variant: 'secondary',
+  color: 'secondary',
   children: 'Secondary Button',
   onClick: fn(),
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  variant: 'tertiary',
+  color: 'tertiary',
   children: 'Tertiary Button',
   onClick: fn(),
 };
@@ -159,6 +138,13 @@ export const Small = Template.bind({});
 Small.args = {
   size: 'small',
   children: 'Small Button',
+  onClick: fn(),
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+  size: 'medium',
+  children: 'Medium Button',
   onClick: fn(),
 };
 

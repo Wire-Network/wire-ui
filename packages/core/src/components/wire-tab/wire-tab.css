@@ -8,6 +8,7 @@
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease;
   color: var(--wire-tab-color, #666);
+  white-space: nowrap;
 }
 
 .wire-tab:hover:not(.disabled) {

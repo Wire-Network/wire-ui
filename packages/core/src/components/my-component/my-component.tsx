@@ -260,9 +260,9 @@ export class MyComponent {
       <div class="my-grid-header">
         <h2>Tabs</h2>
       </div>
-      <div class="my-grid">
+      <div class="my-container">
         <wire-tabs>
-          <wire-tab tab="tab1">First Tab</wire-tab>
+          <wire-tab tab="tab1" active={true}>First Tab</wire-tab>
           <wire-tab tab="tab2">Second Tab</wire-tab>
           <wire-tab tab="tab3" disabled>Disabled Tab</wire-tab>
           

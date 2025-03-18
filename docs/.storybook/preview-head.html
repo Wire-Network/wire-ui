@@ -3,88 +3,32 @@
   // Create a global object to hold the Wire UI components
   window.WireUI = window.WireUI || {};
   
-  // Define a simple mock implementation for the Stencil components
-  window.WireUI.defineCustomElements = function() {
-    console.log('Using mock implementation for Wire UI components');
-    return Promise.resolve();
-  };
+  // Log when preview-head.html is loaded
+  console.log('Preview-head loaded');
   
-  // Define mock components if they don't exist
-  if (typeof customElements !== 'undefined' && !customElements.get('wire-button')) {
-    class WireButton extends HTMLElement {
-      static get observedAttributes() {
-        return ['variant', 'size', 'disabled'];
-      }
-      
-      constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-      }
-      
-      connectedCallback() {
-        this.render();
-        this.addEventListener('click', this.handleClick);
-      }
-      
-      disconnectedCallback() {
-        this.removeEventListener('click', this.handleClick);
-      }
-      
-      handleClick(event) {
-        if (this.hasAttribute('disabled')) {
-          event.preventDefault();
-          return;
-        }
-        
-        this.dispatchEvent(new CustomEvent('click', { 
-          bubbles: true, 
-          composed: true,
-          detail: event 
-        }));
-      }
-      
-      attributeChangedCallback() {
-        this.render();
-      }
-      
-      render() {
-        const variant = this.getAttribute('variant') || 'primary';
-        const size = this.getAttribute('size') || 'medium';
-        const disabled = this.hasAttribute('disabled');
-        
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host {
-              display: inline-block;
-            }
-            button {
-              font-family: sans-serif;
-              font-weight: 500;
-              cursor: pointer;
-              transition: all 0.2s ease;
-              border-radius: 4px;
-              padding: ${size === 'small' ? '4px 8px' : size === 'large' ? '12px 24px' : '8px 16px'};
-              font-size: ${size === 'small' ? '12px' : size === 'large' ? '16px' : '14px'};
-              background-color: ${variant === 'primary' ? '#0066cc' : variant === 'secondary' ? '#f0f0f0' : 'transparent'};
-              color: ${variant === 'primary' ? 'white' : variant === 'secondary' ? '#333' : '#0066cc'};
-              border: ${variant === 'secondary' ? '1px solid #ccc' : 'none'};
-              opacity: ${disabled ? '0.5' : '1'};
-              pointer-events: ${disabled ? 'none' : 'auto'};
-            }
-          </style>
-          <button>
-            <slot></slot>
-          </button>
-        `;
-      }
-    }
+  // Add a helper for story navigation
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded in preview iframe');
     
-    customElements.define('wire-button', WireButton);
-    console.log('Defined mock wire-button component');
-  }
+    // Monitor URL changes to detect story navigation
+    let lastUrl = location.href;
+    
+    // Check for URL changes every 300ms
+    setInterval(() => {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        console.log('Story changed, refreshing components');
+        
+        // Force a small layout shift to trigger re-render
+        setTimeout(() => {
+          document.body.style.minHeight = '100.01vh';
+          setTimeout(() => {
+            document.body.style.minHeight = '';
+          }, 10);
+        }, 100);
+      }
+    }, 300);
+  });
 </script>
 
-<!-- We'll use a different approach to load the Stencil components -->
-<script>
-  console.log('Using mock components for Storybook');
-</script> 
+<!-- The CSS will be imported via the mockLoader.js file -->

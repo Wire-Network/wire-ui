@@ -9,6 +9,10 @@
     }
   }
 
+  .my-container {
+    @apply max-w-xl mx-auto mb-5;
+  }
+
   .my-grid {
     @apply grid grid-cols-3 justify-center gap-4 max-w-xl mx-auto mb-5;
   }

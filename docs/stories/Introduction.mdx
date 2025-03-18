@@ -1,8 +1,10 @@
 import { Meta } from '@storybook/blocks';
+// We no longer need to import and call defineCustomElements here
+// as it's now handled centrally in preview.js
 
 <Meta title="Introduction" />
 
-# Wire UI Library
+# Wire UI Component Library
 
 Welcome to the Wire UI Library documentation. This library provides a set of reusable UI components built with Stencil.js that can be used in various frameworks including React, Angular, and vanilla JavaScript.
 
@@ -20,8 +22,8 @@ The components can be used in different frameworks:
 
 ```html
 <script type="module">
-  import { defineCustomElements } from '@wireio/ui-library/dist/loader';
-  defineCustomElements();
+  // We no longer need to import and call defineCustomElements here
+  // as it's now handled centrally in preview.js
 </script>
 
 <wire-button>Click me</wire-button>

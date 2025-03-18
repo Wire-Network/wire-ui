@@ -1,9 +1,6 @@
 import React from 'react';
-// Import the mock helper instead of the actual loader
-import { defineCustomElements } from '../../.storybook/mockLoader';
-
-// Register the custom elements
-defineCustomElements();
+// We no longer need to import and call defineCustomElements here
+// as it's now handled centrally in preview.js
 
 export default {
   title: 'Components/Logo',
@@ -77,21 +74,12 @@ export const SizesShowcase = () => {
   const sizes = ['small', 'medium', 'large'];
   
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px' }}>
+    <div>
       {modes.map(mode => (
         sizes.map(size => (
-          <div key={`${mode}-${size}`} style={{ 
-            textAlign: 'center', 
-            padding: '20px', 
-            border: '1px solid #eee', 
-            borderRadius: '8px',
-            background: mode === 'light-mode' ? '#333' : 'transparent'
-          }}>
+          <div key={`${mode}-${size}`}>
             <wire-logo mode={mode} size={size}></wire-logo>
-            <p style={{ 
-              marginTop: '10px',
-              color: mode === 'light-mode' ? '#fff' : 'inherit'
-            }}>
+            <p>
               {mode} - {size} size
             </p>
           </div>

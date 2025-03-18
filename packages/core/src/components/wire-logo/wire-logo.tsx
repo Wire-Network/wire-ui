@@ -49,7 +49,8 @@ export class WireLogo {
 
   private async loadLogo() {
     try {
-      const logoFile = `../assets/logo-${this.mode}.svg`;
+      // Use the correct path for assets based on how they're copied in stencil.config.ts
+      const logoFile = `/assets/logo-${this.mode}.svg`;
       const response = await fetch(logoFile);
       this.svgContent = await response.text();
       
