@@ -1,0 +1,25 @@
+/** @type { import('@storybook/react').Preview } */
+import React from 'react';
+
+// Import the CSS from the npm package
+import '@wireio/ui-library/dist/wire-ui/wire-ui.css';
+
+// Import the component loader
+import { defineCustomElements } from './mockLoader';
+
+// Load components once at startup
+defineCustomElements();
+
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
+    },
+  },
+};
+
+export default preview;

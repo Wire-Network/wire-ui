@@ -9,6 +9,7 @@
 
 | Property            | Attribute | Description | Type                             | Default     |
 | ------------------- | --------- | ----------- | -------------------------------- | ----------- |
+| `color`             | `color`   |             | `string \| undefined`            | `undefined` |
 | `name` _(required)_ | `name`    |             | `string`                         | `undefined` |
 | `size`              | `size`    |             | `"large" \| "medium" \| "small"` | `'medium'`  |
 

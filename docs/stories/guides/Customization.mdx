@@ -1,0 +1,245 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guides/Customization" />
+
+# Customizing Wire UI Components
+
+Wire UI components are designed to be customizable to match your application's design system. This guide explains various ways to customize the components.
+
+## CSS Custom Properties
+
+Wire UI components use CSS custom properties (variables) for styling, which makes them easy to customize. You can override these variables in your application's CSS.
+
+### Global Customization
+
+To customize all instances of a component, define the CSS variables at the `:root` level:
+
+```css
+:root {
+  /* Primary colors */
+  --wire-color-primary: #3f51b5;
+  --wire-color-primary-light: #7986cb;
+  --wire-color-primary-dark: #303f9f;
+
+  /* Secondary colors */
+  --wire-color-secondary: #ff4081;
+  --wire-color-secondary-light: #ff80ab;
+  --wire-color-secondary-dark: #f50057;
+
+  /* Neutral colors */
+  --wire-color-neutral-50: #fafafa;
+  --wire-color-neutral-100: #f5f5f5;
+  --wire-color-neutral-200: #eeeeee;
+  --wire-color-neutral-300: #e0e0e0;
+  --wire-color-neutral-400: #bdbdbd;
+  --wire-color-neutral-500: #9e9e9e;
+  --wire-color-neutral-600: #757575;
+  --wire-color-neutral-700: #616161;
+  --wire-color-neutral-800: #424242;
+  --wire-color-neutral-900: #212121;
+
+  /* Semantic colors */
+  --wire-color-success: #4caf50;
+  --wire-color-warning: #ff9800;
+  --wire-color-error: #f44336;
+  --wire-color-info: #2196f3;
+
+  /* Typography */
+  --wire-font-family: 'Roboto', sans-serif;
+  --wire-font-size-small: 0.875rem;
+  --wire-font-size-medium: 1rem;
+  --wire-font-size-large: 1.25rem;
+
+  /* Spacing */
+  --wire-spacing-small: 0.5rem;
+  --wire-spacing-medium: 1rem;
+  --wire-spacing-large: 1.5rem;
+
+  /* Border radius */
+  --wire-border-radius-small: 0.25rem;
+  --wire-border-radius-medium: 0.5rem;
+  --wire-border-radius-large: 1rem;
+  --wire-border-radius-full: 9999px;
+
+  /* Shadows */
+  --wire-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --wire-shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --wire-shadow-large: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+```
+
+### Component-Specific Customization
+
+To customize a specific instance of a component, you can target it with a class or ID:
+
+```html
+<wire-button class="custom-button" variant="primary">Custom Button</wire-button>
+
+<style>
+  .custom-button {
+    --wire-button-background: #ff5722;
+    --wire-button-color: white;
+    --wire-button-border-radius: 0;
+    --wire-button-padding: 1rem 2rem;
+  }
+</style>
+```
+
+## Component-Specific Variables
+
+Each component has its own set of CSS variables that you can override. Here are some examples:
+
+### Button Component
+
+```css
+wire-button {
+  /* Base styles */
+  --wire-button-font-family: var(--wire-font-family);
+  --wire-button-font-weight: 500;
+  --wire-button-border-width: 1px;
+  --wire-button-border-style: solid;
+
+  /* Size variants */
+  --wire-button-padding-small: 0.25rem 0.5rem;
+  --wire-button-padding-medium: 0.5rem 1rem;
+  --wire-button-padding-large: 0.75rem 1.5rem;
+  --wire-button-font-size-small: var(--wire-font-size-small);
+  --wire-button-font-size-medium: var(--wire-font-size-medium);
+  --wire-button-font-size-large: var(--wire-font-size-large);
+
+  /* Primary variant */
+  --wire-button-primary-background: var(--wire-color-primary);
+  --wire-button-primary-color: white;
+  --wire-button-primary-border-color: var(--wire-color-primary);
+  --wire-button-primary-hover-background: var(--wire-color-primary-dark);
+  --wire-button-primary-hover-color: white;
+  --wire-button-primary-hover-border-color: var(--wire-color-primary-dark);
+
+  /* Secondary variant */
+  --wire-button-secondary-background: transparent;
+  --wire-button-secondary-color: var(--wire-color-primary);
+  --wire-button-secondary-border-color: var(--wire-color-primary);
+  --wire-button-secondary-hover-background: rgba(63, 81, 181, 0.1);
+  --wire-button-secondary-hover-color: var(--wire-color-primary-dark);
+  --wire-button-secondary-hover-border-color: var(--wire-color-primary-dark);
+}
+```
+
+### Card Component
+
+```css
+wire-card {
+  --wire-card-background: white;
+  --wire-card-border-radius: var(--wire-border-radius-medium);
+  --wire-card-padding-none: 0;
+  --wire-card-padding-small: var(--wire-spacing-small);
+  --wire-card-padding-medium: var(--wire-spacing-medium);
+  --wire-card-padding-large: var(--wire-spacing-large);
+  --wire-card-shadow: var(--wire-shadow-medium);
+  --wire-card-border-color: var(--wire-color-neutral-200);
+  --wire-card-border-width: 1px;
+  --wire-card-border-style: solid;
+}
+```
+
+## Theming with CSS
+
+You can create multiple themes by defining different sets of CSS variables and applying them conditionally:
+
+```css
+/* Light theme (default) */
+:root {
+  --wire-color-background: #ffffff;
+  --wire-color-text: #212121;
+  --wire-color-primary: #3f51b5;
+  /* ... other variables ... */
+}
+
+/* Dark theme */
+.dark-theme {
+  --wire-color-background: #121212;
+  --wire-color-text: #ffffff;
+  --wire-color-primary: #7986cb;
+  /* ... other variables ... */
+}
+```
+
+Then apply the theme class to your container:
+
+```html
+<div class="dark-theme">
+  <wire-card>
+    <h2>Dark Theme Card</h2>
+    <p>This card uses the dark theme.</p>
+    <wire-button variant="primary">Dark Theme Button</wire-button>
+  </wire-card>
+</div>
+```
+
+## Using Slots for Content Customization
+
+Wire UI components use slots to allow you to customize their content. For example, the `wire-card` component has a default slot for its content:
+
+```html
+<wire-card>
+  <h2>Custom Content</h2>
+  <p>This is custom content inside the card.</p>
+  <img src="image.jpg" alt="Custom image" />
+</wire-card>
+```
+
+Some components have named slots for specific parts of the component. For example, the `wire-tabs` component has slots for tabs and panels:
+
+```html
+<wire-tabs>
+  <wire-tab slot="tab" tab="tab1" active>Tab 1</wire-tab>
+  <wire-tab slot="tab" tab="tab2">Tab 2</wire-tab>
+
+  <div slot="panel" tab="tab1">
+    <h3>Tab 1 Content</h3>
+    <p>This is the content for the first tab.</p>
+  </div>
+  <div slot="panel" tab="tab2">
+    <h3>Tab 2 Content</h3>
+    <p>This is the content for the second tab.</p>
+  </div>
+</wire-tabs>
+```
+
+## Advanced Customization
+
+For more advanced customization needs, you can extend the Wire UI components to create your own custom components:
+
+```javascript
+// my-custom-button.js
+import { WireButton } from '@wireio/ui-library';
+
+export class MyCustomButton extends WireButton {
+  constructor() {
+    super();
+    // Custom initialization
+  }
+
+  // Override methods or add new ones
+}
+
+customElements.define('my-custom-button', MyCustomButton);
+```
+
+Then use your custom component:
+
+```html
+<my-custom-button variant="primary">Custom Button</my-custom-button>
+```
+
+## Best Practices
+
+1. **Use CSS variables for theming**: Prefer using CSS variables over direct styling to ensure consistency.
+
+2. **Keep customizations maintainable**: Group related customizations together and document your custom variables.
+
+3. **Test across browsers**: Custom elements and CSS variables have good support in modern browsers, but always test your customizations across different browsers.
+
+4. **Respect the component API**: When customizing, try to work with the component's existing API rather than fighting against it.
+
+5. **Consider accessibility**: Ensure your customizations maintain good accessibility, especially for color contrast and interactive elements.

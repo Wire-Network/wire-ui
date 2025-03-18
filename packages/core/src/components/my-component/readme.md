@@ -9,6 +9,7 @@
 
 ### Depends on
 
+- [wire-logo](../wire-logo)
 - [wire-button](../wire-button)
 - [wire-card](../wire-card)
 - [wire-icon](../wire-icon)
@@ -18,6 +19,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  my-component --> wire-logo
   my-component --> wire-button
   my-component --> wire-card
   my-component --> wire-icon

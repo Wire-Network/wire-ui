@@ -52,14 +52,14 @@ export declare interface WireCard extends Components.WireCard {}
 
 
 @ProxyCmp({
-  inputs: ['name', 'size']
+  inputs: ['color', 'name', 'size']
 })
 @Component({
   selector: 'wire-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['name', 'size'],
+  inputs: ['color', 'name', 'size'],
 })
 export class WireIcon {
   protected el: HTMLWireIconElement;
@@ -71,6 +71,28 @@ export class WireIcon {
 
 
 export declare interface WireIcon extends Components.WireIcon {}
+
+
+@ProxyCmp({
+  inputs: ['mode', 'size', 'width']
+})
+@Component({
+  selector: 'wire-logo',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['mode', 'size', 'width'],
+})
+export class WireLogo {
+  protected el: HTMLWireLogoElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({

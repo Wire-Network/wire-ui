@@ -1,0 +1,34 @@
+<!-- This file is automatically injected into the preview iframe -->
+<script>
+  // Create a global object to hold the Wire UI components
+  window.WireUI = window.WireUI || {};
+  
+  // Log when preview-head.html is loaded
+  console.log('Preview-head loaded');
+  
+  // Add a helper for story navigation
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded in preview iframe');
+    
+    // Monitor URL changes to detect story navigation
+    let lastUrl = location.href;
+    
+    // Check for URL changes every 300ms
+    setInterval(() => {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        console.log('Story changed, refreshing components');
+        
+        // Force a small layout shift to trigger re-render
+        setTimeout(() => {
+          document.body.style.minHeight = '100.01vh';
+          setTimeout(() => {
+            document.body.style.minHeight = '';
+          }, 10);
+        }, 100);
+      }
+    }, 300);
+  });
+</script>
+
+<!-- The CSS will be imported via the mockLoader.js file -->

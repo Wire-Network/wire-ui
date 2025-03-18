@@ -2,7 +2,8 @@
   "name": "@wireio/ui-library-monorepo",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "scripts": {
     "build": "npm run build:core && npm run build:angular",
@@ -12,10 +13,16 @@
     "test:core": "cd packages/core && npm run test",
     "test:angular": "cd packages/angular && ng test wire-ui",
     "clean": "npm run clean --workspaces --if-present",
-    "build:react": "npm run build --workspace @wireio/ui-library-react"
+    "build:react": "npm run build --workspace @wireio/ui-library-react",
+    "docs:dev": "npm run storybook --workspace @wireio/ui-library-docs",
+    "docs:build": "npm run build-storybook --workspace @wireio/ui-library-docs",
+    "docs:deploy": "npm run deploy --workspace @wireio/ui-library-docs"
   },
   "devDependencies": {
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@wireio/ui-library": "file:packages/core"
   }
 }

@@ -1,0 +1,260 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guides/Component Patterns" />
+
+# Component Patterns
+
+This guide demonstrates how to combine Wire UI components to create common UI patterns.
+
+## Card with Header and Actions
+
+A common pattern is to create a card with a header, content, and action buttons.
+
+```jsx
+<wire-card>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+    <h3>Card Title</h3>
+    <wire-icon name="settings" size="small"></wire-icon>
+  </div>
+
+  <p>This is the main content of the card. It can contain text, images, or other components.</p>
+
+  <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px', gap: '8px' }}>
+    <wire-button variant="tertiary">Cancel</wire-button>
+    <wire-button variant="primary">Save</wire-button>
+  </div>
+</wire-card>
+```
+
+## Tabbed Interface with Content
+
+Tabs are useful for organizing content into different sections.
+
+```jsx
+<wire-tabs>
+  <wire-tab slot="tab" tab="details" active>
+    Details
+  </wire-tab>
+  <wire-tab slot="tab" tab="settings">
+    Settings
+  </wire-tab>
+  <wire-tab slot="tab" tab="history">
+    History
+  </wire-tab>
+
+  <div slot="panel" tab="details">
+    <wire-card>
+      <h3>User Details</h3>
+      <p>Name: John Doe</p>
+      <p>Email: john.doe@example.com</p>
+      <p>Role: Administrator</p>
+    </wire-card>
+  </div>
+
+  <div slot="panel" tab="settings">
+    <wire-card>
+      <h3>User Settings</h3>
+      <p>Configure user preferences here.</p>
+    </wire-card>
+  </div>
+
+  <div slot="panel" tab="history">
+    <wire-card>
+      <h3>User History</h3>
+      <p>View user activity history here.</p>
+    </wire-card>
+  </div>
+</wire-tabs>
+```
+
+## Form with Validation
+
+A common pattern for forms with validation feedback.
+
+```jsx
+<wire-card>
+  <h3>User Registration</h3>
+
+  <div style={{ marginBottom: '16px' }}>
+    <label style={{ display: 'block', marginBottom: '4px' }}>Username</label>
+    <input type="text" style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
+  </div>
+
+  <div style={{ marginBottom: '16px' }}>
+    <label style={{ display: 'block', marginBottom: '4px' }}>Email</label>
+    <input type="email" style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #f44336' }} />
+    <p style={{ color: '#f44336', fontSize: '14px', marginTop: '4px' }}>Please enter a valid email address</p>
+  </div>
+
+  <div style={{ marginBottom: '16px' }}>
+    <label style={{ display: 'block', marginBottom: '4px' }}>Password</label>
+    <input type="password" style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
+  </div>
+
+  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+    <wire-button variant="tertiary">Cancel</wire-button>
+    <wire-button variant="primary">Register</wire-button>
+  </div>
+</wire-card>
+```
+
+## Notification System
+
+Combining toast notifications with buttons.
+
+```jsx
+<div>
+  <wire-card>
+    <h3>Notification Demo</h3>
+    <p>Click the buttons below to trigger different types of notifications.</p>
+
+    <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+      <wire-button
+        variant="primary"
+        onClick={() => {
+          document.dispatchEvent(
+            new CustomEvent('show-toast', {
+              detail: {
+                type: 'info',
+                message: 'This is an information message',
+                duration: 3000,
+                position: 'top-right',
+              },
+              bubbles: true,
+              composed: true,
+            }),
+          );
+        }}
+      >
+        Info
+      </wire-button>
+
+      <wire-button
+        variant="secondary"
+        onClick={() => {
+          document.dispatchEvent(
+            new CustomEvent('show-toast', {
+              detail: {
+                type: 'success',
+                message: 'Operation completed successfully!',
+                duration: 3000,
+                position: 'top-right',
+              },
+              bubbles: true,
+              composed: true,
+            }),
+          );
+        }}
+      >
+        Success
+      </wire-button>
+
+      <wire-button
+        variant="tertiary"
+        onClick={() => {
+          document.dispatchEvent(
+            new CustomEvent('show-toast', {
+              detail: {
+                type: 'warning',
+                message: 'Warning: This action cannot be undone',
+                duration: 3000,
+                position: 'top-right',
+              },
+              bubbles: true,
+              composed: true,
+            }),
+          );
+        }}
+      >
+        Warning
+      </wire-button>
+
+      <wire-button
+        variant="danger"
+        onClick={() => {
+          document.dispatchEvent(
+            new CustomEvent('show-toast', {
+              detail: {
+                type: 'error',
+                message: 'An error occurred while processing your request',
+                duration: 3000,
+                position: 'top-right',
+              },
+              bubbles: true,
+              composed: true,
+            }),
+          );
+        }}
+      >
+        Error
+      </wire-button>
+    </div>
+  </wire-card>
+
+  <wire-toast></wire-toast>
+</div>
+```
+
+## Dashboard Layout
+
+A common dashboard layout pattern.
+
+```jsx
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '16px' }}>
+  <div style={{ gridColumn: 'span 12' }}>
+    <wire-card>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h2>Dashboard</h2>
+        <wire-button variant="primary" size="small">
+          <wire-icon name="settings" size="small"></wire-icon>
+          Settings
+        </wire-button>
+      </div>
+    </wire-card>
+  </div>
+
+  <div style={{ gridColumn: 'span 4' }}>
+    <wire-card>
+      <h3>Users</h3>
+      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>1,234</p>
+    </wire-card>
+  </div>
+
+  <div style={{ gridColumn: 'span 4' }}>
+    <wire-card>
+      <h3>Revenue</h3>
+      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>$45,678</p>
+    </wire-card>
+  </div>
+
+  <div style={{ gridColumn: 'span 4' }}>
+    <wire-card>
+      <h3>Conversion</h3>
+      <p style={{ fontSize: '24px', fontWeight: 'bold' }}>12.3%</p>
+    </wire-card>
+  </div>
+
+  <div style={{ gridColumn: 'span 8' }}>
+    <wire-card>
+      <h3>Recent Activity</h3>
+      <ul>
+        <li>User John Doe signed up</li>
+        <li>New order #12345 received</li>
+        <li>Payment processed for order #12344</li>
+        <li>User Jane Smith updated profile</li>
+      </ul>
+    </wire-card>
+  </div>
+
+  <div style={{ gridColumn: 'span 4' }}>
+    <wire-card>
+      <h3>Quick Actions</h3>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <wire-button variant="primary">Create User</wire-button>
+        <wire-button variant="secondary">View Reports</wire-button>
+        <wire-button variant="tertiary">Export Data</wire-button>
+      </div>
+    </wire-card>
+  </div>
+</div>
+```

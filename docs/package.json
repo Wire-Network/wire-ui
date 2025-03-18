@@ -1,0 +1,33 @@
+{
+  "name": "@wireio/ui-library-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Documentation site for Wire UI Component Library",
+  "scripts": {
+    "setup": "mkdir -p stories/components stories/guides",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "deploy": "node scripts/deploy.js"
+  },
+  "dependencies": {
+    "@wireio/ui-library": "0.0.5-alpha.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.6.4",
+    "@storybook/addon-interactions": "^8.6.4",
+    "@storybook/addon-links": "^8.6.4",
+    "@storybook/addon-mdx-gfm": "^8.6.4",
+    "@storybook/addon-onboarding": "^8.6.4",
+    "@storybook/blocks": "^8.6.4",
+    "@storybook/manager-api": "^8.6.4",
+    "@storybook/react": "^8.6.4",
+    "@storybook/react-vite": "^8.6.4",
+    "@storybook/test": "^8.6.4",
+    "@storybook/theming": "^8.6.4",
+    "storybook": "^8.6.4",
+    "vite": "^5.0.12"
+  }
+}

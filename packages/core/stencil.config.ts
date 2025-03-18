@@ -16,20 +16,13 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: 'loader',
-      copy: [
-        { src: 'components/assets', dest: 'dist/assets' },
-        { src: 'components/**/*.css', dest: 'dist/components' }
-      ]
+      copy: []
     },
     // Custom elements bundle
     {
       type: 'dist-custom-elements',
       customElementsExportBehavior: 'auto-define-custom-elements',
       externalRuntime: false,
-      copy: [
-        { src: 'components/assets', dest: 'dist/assets' },
-        { src: 'components/**/*.css', dest: 'dist/components' }
-      ]
     },
     // Angular output target
     angularOutputTarget({
