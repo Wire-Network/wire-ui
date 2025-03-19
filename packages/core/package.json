@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-library",
-  "version": "0.0.5-alpha.1",
+  "version": "0.0.8",
   "description": "Wire UI Component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -12,13 +12,14 @@
   "unpkg": "dist/wire-ui/wire-ui.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/wire-ui/wire-ui.esm.js",
-      "require": "./dist/wire-ui/wire-ui.cjs.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/types/index.d.ts"
     },
-    "./dist/loader": {
+    "./loader": {
+      "types": "./dist/types/components.d.ts",
       "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.js",
-      "types": "./dist/types/loader.d.ts"
+      "require": "./dist/loader/index.cjs.js"
     },
     "./assets/*": "./dist/assets/*"
   },
