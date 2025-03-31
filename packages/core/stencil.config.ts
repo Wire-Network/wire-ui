@@ -23,7 +23,9 @@ export const config: Config = {
       type: 'dist-custom-elements',
       customElementsExportBehavior: 'auto-define-custom-elements',
       externalRuntime: false,
-      generateTypeDeclarations: true
+      generateTypeDeclarations: true,
+      includeGlobalScripts: true,
+      minify: true
     },
     // Angular output target
     angularOutputTarget({
@@ -62,6 +64,9 @@ export const config: Config = {
     reloadStrategy: 'pageReload',
     openBrowser: false,
     port: 3333
+  },
+  extras: {
+    enableImportInjection: true
   },
   buildEs5: 'prod'
 };
