@@ -24,4 +24,80 @@
       @apply text-gray-700;
     }
   }
+
+  .my-container {
+    &.light, 
+    &.dark {
+      @apply p-8;
+    }
+
+    &.light {
+      background: #fff;
+    }
+
+    &.dark {
+      @apply bg-gray-900;
+
+      .new-button:hover {
+        .new-button-inner {
+          @apply bg-[rgba(29,29,29,1)];
+        }
+      }
+    }
+  }
+  
+  .new-button {
+    @apply relative inline-block rounded-lg cursor-pointer transition-all duration-200 z-10;
+
+    &:hover {
+      @apply -ml-[1px] -mt-[1px] -mb-[1px] -mr-[1px];
+
+      &::before {
+        padding: 2px;
+      }
+
+      &::after {
+        @apply rounded-[7px] opacity-50;
+      }
+
+      .new-button-inner {
+        @apply bg-[rgba(255,255,255,1)] m-[2px];
+      }
+    }
+
+    &::before {
+      @apply content-[''] absolute inset-0 -z-10 bg-gradient-to-br from-primary to-secondary rounded-[9px] transition-all duration-200;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      padding: 1px;
+    }
+
+    &::after {
+      @apply content-[''] absolute inset-0 -z-10  rounded-lg blur opacity-25;
+      background: linear-gradient(to right bottom, rgba(68,178,245,0.95), rgba(240,240,240,0.15) 50%, rgba(172,95,230,0.95)), linear-gradient(to right bottom, var(--blue), var(--purple));
+    }
+
+    .dark & {
+      &::hover {
+        .new-button-inner {
+          @apply bg-primary;
+        }
+      }
+    }
+
+    .new-button-inner {
+      @apply relative rounded-[8px] px-6 py-3 bg-[rgba(255,255,255,0.9)] m-[1px] transition-all duration-200;
+
+      .dark & {
+        @apply bg-[rgba(29,29,29,0.9)] text-white;
+      }
+
+      &::after {
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-transparent to-white rounded-full bottom-2 right-2 blur;
+      }
+      &::before {
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-white to-transparent rounded-full top-2 left-2 blur;
+      }
+    }
+  }
 }

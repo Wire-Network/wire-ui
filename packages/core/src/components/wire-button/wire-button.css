@@ -1,57 +1,78 @@
 :host {
   button {
-    @apply flex justify-center items-center gap-2 font-sora font-normal rounded-lg whitespace-nowrap border-0 cursor-pointer;
+    @apply relative inline-block font-sora font-normal bg-transparent rounded-lg whitespace-nowrap border-0 cursor-pointer transition-all duration-200 z-[1];
+  }
+
+  .wire-button__content {
+    @apply flex justify-center items-center gap-2 transition-all duration-200;
   }
 
   /* Size variants */
-  .wire-button--small {
-    @apply text-xs py-3 px-5;
+  .wire-button--size-small {
+    @apply text-xs;
+
+    .wire-button__content {
+      @apply px-3 py-3;
+    }
+
+    &.wire-button--has-icon .wire-button__content {
+      @apply px-4 py-[.65rem] ;
+    }
+
+    &.wire-button--icon-right .wire-button__content {
+      @apply px-4 py-[.65rem];
+    }
   }
 
-  .wire-button--small.wire-button--has-icon {
-    @apply py-[.65rem] pl-3 pr-4;
+  .wire-button--size-medium {
+    @apply text-sm;
+
+    .wire-button__content {
+      @apply px-6 py-4;
+    }
+    
+    &.wire-button--has-icon .wire-button__content {
+      @apply px-5 py-3 gap-3;
+    }
+
+    &.wire-button--icon-right .wire-button__content {
+      @apply px-5 py-3 gap-3;
+    }
   }
 
-  .wire-button--small.wire-button--icon-right {
-    @apply py-[.65rem] pl-4 pr-3;
+  .wire-button--size-large {
+    @apply text-base;
+
+    .wire-button__content {
+      @apply px-8 py-5;
+    }
+
+    &.wire-button--has-icon .wire-button__content {
+      @apply pl-7 pr-8 py-4 gap-4;
+    }
+
+    &.wire-button--icon-right .wire-button__content {
+      @apply pl-8 pr-7 py-4 gap-4;
+    }
   }
 
-  .wire-button--medium {
-    @apply text-sm py-4 px-7;
-  }
-
-  .wire-button--medium.wire-button--has-icon {
-    @apply py-3 pl-5 pr-6;
-  }
-
-  .wire-button--medium.wire-button--icon-right {
-    @apply pl-6 pr-5;
-  }
-
-  .wire-button--large {
-    @apply text-base py-5 px-10;
-  }
-
-  .wire-button--large.wire-button--has-icon {
-    @apply py-4 pl-7 pr-9;
-  }
-
-  .wire-button--large.wire-button--icon-right {
-    @apply py-4 pl-9 pr-7;
-  }
-
-  .wire-button--filled {
+  /* Solid variants */
+  .wire-button--variant-solid {
     @apply text-white;
 
-    &.wire-button--primary {
+    .wire-button__content {
+      @apply rounded-lg;
+    }
+
+    &.wire-button--color-blue .wire-button__content {
       @apply bg-blue hover:bg-blue-dark;
     }
 
-    &.wire-button--secondary {
-      @apply bg-purple hover:bg-purple-dark;
+    &.wire-button--color-white .wire-button__content {
+      @apply bg-white;
     }
 
-    &.wire-button--tertiary {
+    &.wire-button--color-gradient .wire-button__content {
       @apply bg-gradient-to-r from-blue to-purple;
 
       &:hover {
@@ -60,69 +81,73 @@
     }
   }
 
-  .wire-button--outline {
-    @apply bg-transparent;
+  /* Outline */
+  .wire-button--variant-outline {
+    @apply p-[1px];
 
-    &.wire-button--primary {
-      @apply ring-2 ring-inset ring-blue text-blue hover:bg-blue hover:text-white;
+    .wire-button__content {
+      @apply relative rounded-[8px] bg-[rgba(255,255,255,0.9)] transition-all duration-200;
     }
 
-    &.wire-button--secondary {
-      @apply ring-2 ring-inset ring-purple text-purple hover:bg-purple hover:text-white;
+    &.wire-button--color-blue {
+      @apply ring-1 ring-inset ring-blue text-blue hover:ring-2 p-[2px];
     }
 
-    &.wire-button--tertiary {
-      @apply relative bg-gradient-to-r from-blue to-purple bg-clip-text text-transparent;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        border-radius: inherit;
-        border-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='none'%3e%3cpath stroke='url(%23a)' stroke-width='2' d='M8 1h84a7 7 0 0 1 7 7v84a7 7 0 0 1-7 7H8a7 7 0 0 1-7-7V8a7 7 0 0 1 7-7Z'/%3e%3cdefs%3e%3clinearGradient id='a' x1='20.27' x2='120.715' y1='125' y2='113.589' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%233981fe'/%3e%3cstop offset='1' stop-color='%238d4bf6'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e") 8 / 8px stretch;
+    &.wire-button--color-white {
+      @apply ring-1 ring-inset ring-purple text-purple hover:ring-2 p-[2px];
+    }
+
+    &.wire-button--color-gradient {
+      &::before {
+        @apply content-[''] absolute inset-0 -z-10 bg-gradient-to-br from-primary to-secondary rounded-[9px] transition-all duration-200;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        padding: 1px;
       }
 
       &:hover {
-        @apply text-white;
+        @apply -ml-[1px] -mt-[1px] -mr-[1px] -mb-[1px] p-[2px];
+
+        &::before {
+          @apply p-[2px];
+        }
 
         &::after {
-          @apply bg-gradient-to-r from-blue-dark to-purple-dark;
-          border-image: none;
+          @apply rounded-[7px] opacity-50;
         }
 
-        &.wire-button--icon-left wire-icon, 
-        &.wire-button--icon-right wire-icon {
-          @apply text-white;
-        }
-      }
-
-      &.wire-button--icon-left {
-        wire-icon {
-          @apply text-blue;
-        }
-      }
-
-      &.wire-button--icon-right {
-        wire-icon {
-          @apply text-purple;
+        .wire-button__content {
+          @apply bg-[rgba(255,255,255,1)];
         }
       }
     }
   }
 
-  /* Tertiary (Gradient) */
-  /* .wire-button--tertiary.wire-button--outline {
-    @apply border-2 bg-gradient-to-r from-blue to-purple;
-    background: linear-gradient(to right, var(--blue), var(--purple));
-    -webkit-background-clip: text;
-    color: transparent;
-    &:hover {
-      @apply text-white;
-      background: linear-gradient(to right, var(--blue-dark), var(--purple-dark));
-      -webkit-background-clip: unset;
+  /* Text variants */
+  .wire-button--variant-text {
+    @apply text-blue hover:underline hover:underline-offset-1;
+
+    .wire-button__content {
+      @apply rounded-lg;
     }
-  } */
+  }
+
+  /* Glow effect */
+  .wire-button--glow {
+    &::after {
+      @apply content-[''] absolute inset-0 -z-10  rounded-lg blur opacity-25;
+      background: linear-gradient(to right bottom, rgba(68,178,245,0.95), rgba(240,240,240,0.15) 50%, rgba(172,95,230,0.95)), linear-gradient(to right bottom, var(--blue), var(--purple));
+    }
+
+    .wire-button__content {
+      &::after {
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-transparent to-white rounded-full bottom-2 right-2 blur;
+      }
+      &::before {
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-white to-transparent rounded-full top-2 left-2 blur;
+      }
+    }
+  }
 
   /* States */
   .wire-button--disabled {

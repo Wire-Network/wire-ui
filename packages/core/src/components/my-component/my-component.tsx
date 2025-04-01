@@ -32,7 +32,7 @@ export class MyComponent {
       <div class="my-grid">
         <wire-button 
           label="Show Toast" 
-          color="primary" 
+          color="blue" 
           onClick={() => this.showToast()}
         ></wire-button>
       </div>
@@ -43,7 +43,7 @@ export class MyComponent {
       <div class="my-grid-header">
         <wire-card heading="Card Title" icon="stack">
           <div slot="actions">
-            <wire-button label="Button" color="primary" variant="outline" size="small"></wire-button>
+            <wire-button label="Button" color="blue" variant="outline" size="small"></wire-button>
           </div>
           Card content…
         </wire-card>
@@ -52,12 +52,52 @@ export class MyComponent {
       <div class="my-grid-header">
         <h2>Large</h2>
       </div>
-      <div class="my-grid">
-        <wire-button label="Button" color="primary" size="large"></wire-button>
-        <wire-button label="Button" color="primary" size="large" icon="coin" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" size="large" icon="stack" iconPosition="right"></wire-button>
+      <div class="my-container light">
+        <div class="new-button">
+          <div class="new-button-inner">New Button</div>
+        </div>
+      </div>
 
-        <wire-button label="Button" color="secondary" size="large"></wire-button>
+      <div class="my-container dark">
+        <div class="new-button">
+          <div class="new-button-inner">New Button</div>
+        </div>
+      </div>
+      
+      <div class="my-grid">
+        <wire-button label="New Button" role="primary" size="small" color="gradient"></wire-button>
+        <wire-button label="New Button" role="primary" size="medium" color="gradient"></wire-button>
+        <wire-button label="New Button" role="primary" size="large" color="gradient"></wire-button>
+        
+        <wire-button label="New Button" role="primary" size="small"></wire-button>
+        <wire-button label="New Button" role="primary"></wire-button>
+        <wire-button label="New Button" role="primary" size="large"></wire-button>
+
+        <wire-button label="New Button" role="secondary" size="small" color="gradient"></wire-button>
+        <wire-button label="New Button" role="secondary" size="medium" color="gradient"></wire-button>
+        <wire-button label="New Button" role="secondary" size="large" color="gradient"></wire-button>
+
+        <wire-button label="New Button" role="secondary" size="small"></wire-button>
+        <wire-button label="New Button" role="secondary"></wire-button>
+        <wire-button label="New Button" role="secondary" size="large"></wire-button>
+
+        <wire-button label="New Button" role="tertiary" size="small"></wire-button>
+        <wire-button label="New Button" role="tertiary"></wire-button>
+        <wire-button label="New Button" role="tertiary" size="large"></wire-button>
+
+        <wire-button label="New Button" role="primary" size="small" color="gradient" icon="search"></wire-button>
+        <wire-button label="New Button" role="primary" size="medium" color="gradient" icon="stack"></wire-button>
+        <wire-button label="New Button" role="primary" size="large" color="gradient" icon="stack"></wire-button>
+
+        <wire-button label="New Button" role="secondary" size="small" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="New Button" role="secondary" size="medium" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="New Button" role="secondary" size="large" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        
+        {/* <wire-button label="Button" color="blue" size="large"></wire-button>
+        <wire-button label="Button" color="blue" size="large" icon="coin" iconPosition="left"></wire-button>
+        <wire-button label="Button" color="blue" size="large" icon="stack" iconPosition="right"></wire-button> */}
+
+        {/* <wire-button label="Button" color="secondary" size="large"></wire-button>
         <wire-button label="Button" color="secondary" size="large" icon="stack" iconPosition="left"></wire-button>
         <wire-button label="Button" color="secondary" size="large" icon="stack" iconPosition="right"></wire-button>
 
@@ -75,10 +115,10 @@ export class MyComponent {
 
         <wire-button label="Button" color="tertiary" variant="outline" size="large"></wire-button>
         <wire-button label="Button" color="tertiary" variant="outline" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="large" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="Button" color="tertiary" variant="outline" size="large" icon="stack" iconPosition="right"></wire-button> */}
       </div>
 
-      <div class="my-grid-header">
+      {/* <div class="my-grid-header">
         <h2>Medium (default)</h2>
       </div>
       <div class="my-grid">
@@ -134,7 +174,7 @@ export class MyComponent {
         <wire-button label="Button" color="tertiary" variant="outline" size="small"></wire-button>
         <wire-button label="Button" color="tertiary" variant="outline" size="small" icon="stack" iconPosition="left"></wire-button>
         <wire-button label="Button" color="tertiary" variant="outline" size="small" icon="stack" iconPosition="right"></wire-button>
-      </div>
+      </div> */}
 
       <div class="my-grid-header">
         <h2>Icons</h2>
