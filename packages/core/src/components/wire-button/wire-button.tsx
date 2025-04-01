@@ -9,10 +9,10 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class WireButton {
   // The semantic purpose of the button (what it does)
-  @Prop() role: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  // The visual style (how it looks). Will be computed based on role if not provided.
+  @Prop() buttonType: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  // The visual style (how it looks). Will be computed based on buttonType if not provided.
   @Prop() variant?: 'solid' | 'outline' | 'text' | 'gradient';
-  // Optional color override. Defaults are computed based on role.
+  // Optional color override. Defaults are computed based on buttonType.
   @Prop() color?: 'blue' | 'white' | 'gradient';
   // Glow effect. Defaults to true for primary/secondary, false for tertiary.
   @Prop() glow?: boolean;
@@ -24,10 +24,10 @@ export class WireButton {
   @Prop() icon?: string;
   @Prop() iconPosition: 'left' | 'right' = 'left';
 
-  // Determine the variant based on the role if not explicitly set.
+  // Determine the variant based on the buttonType if not explicitly set.
   private get computedVariant(): 'solid' | 'outline' | 'text' | 'gradient' {
     if (this.variant) return this.variant;
-    switch (this.role) {
+    switch (this.buttonType) {
       case 'primary':
         return 'solid';
       case 'secondary':
@@ -39,10 +39,10 @@ export class WireButton {
     }
   }
 
-  // Determine the color based on the role if not explicitly set.
+  // Determine the color based on the buttonType if not explicitly set.
   private get computedColor(): 'blue' | 'white' | 'gradient' | 'gray' {
     if (this.color) return this.color;
-    switch (this.role) {
+    switch (this.buttonType) {
       case 'primary':
       case 'secondary':
         return 'blue';
@@ -56,7 +56,7 @@ export class WireButton {
   // Determine if glow is enabled based on the variant.
   private get computedGlow(): boolean {
     if (this.glow !== undefined) return this.glow;
-    switch (this.role) {
+    switch (this.buttonType) {
       case 'primary':
       case 'secondary':
         return true;
@@ -71,8 +71,8 @@ export class WireButton {
     return (
       <button class={{
         'wire-button': true,
-        // Semantic role class: makes it clear what the button's purpose is.
-        [`wire-button--role-${this.role}`]: true,
+        // Semantic buttonType class: makes it clear what the button's purpose is.
+        [`wire-button--type-${this.buttonType}`]: true,
         // Visual treatment based on computed variant.
         [`wire-button--variant-${this.computedVariant}`]: true,
         // Color class: either the default (computed) or the override.

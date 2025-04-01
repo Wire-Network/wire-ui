@@ -158,9 +158,9 @@
     @apply opacity-75 cursor-wait;
   }
 
-  /* Icon styles - keeping existing icon styles */
+  /* Icon styles */
   .wire-button--has-icon wire-icon {
-    @apply -mx-1; /* Optionally adjust icon spacing */
+    @apply -mx-1;
   }
 
   .wire-button--icon-left { /* ... existing icon styles ... */ }
