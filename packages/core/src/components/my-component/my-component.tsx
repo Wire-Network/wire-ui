@@ -85,7 +85,7 @@ export class MyComponent {
         <wire-button label="New Button" role="tertiary"></wire-button>
         <wire-button label="New Button" role="tertiary" size="large"></wire-button>
 
-        <wire-button label="New Button" role="primary" size="small" color="gradient" icon="stack"></wire-button>
+        <wire-button label="New Button" role="primary" size="small" color="gradient" icon="search"></wire-button>
         <wire-button label="New Button" role="primary" size="medium" color="gradient" icon="stack"></wire-button>
         <wire-button label="New Button" role="primary" size="large" color="gradient" icon="stack"></wire-button>
 
