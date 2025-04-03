@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
+import { Component, h, Prop, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'wire-button',

@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                       | Default     |
-| --------- | --------- | ----------- | -------------------------- | ----------- |
-| `actions` | --        |             | `HTMLElement \| undefined` | `undefined` |
-| `heading` | `heading` |             | `string \| undefined`      | `undefined` |
-| `icon`    | `icon`    |             | `string \| undefined`      | `undefined` |
+| Property  | Attribute | Description | Type                             | Default     |
+| --------- | --------- | ----------- | -------------------------------- | ----------- |
+| `actions` | --        |             | `HTMLElement \| undefined`       | `undefined` |
+| `heading` | `heading` |             | `string \| undefined`            | `undefined` |
+| `icon`    | `icon`    |             | `string \| undefined`            | `undefined` |
+| `theme`   | `theme`   |             | `"dark" \| "light" \| undefined` | `undefined` |
 
 
 ## Dependencies
