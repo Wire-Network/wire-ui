@@ -68,5 +68,6 @@ export const config: Config = {
   extras: {
     enableImportInjection: true
   },
-  buildEs5: 'prod'
+  buildEs5: 'prod',
+  sourceMap: false
 };

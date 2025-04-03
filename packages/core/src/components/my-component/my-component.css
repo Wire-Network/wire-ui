@@ -1,6 +1,10 @@
 :host {
   display: block;
 
+  .dark, .dark-theme {
+    background: #1d1d1d;
+  }
+
   .my-grid-header {
     @apply text-lg font-bold mb-4 max-w-xl mx-auto;
 

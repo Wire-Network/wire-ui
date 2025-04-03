@@ -9,6 +9,7 @@
 
 | Property       | Attribute       | Description | Type                                                        | Default     |
 | -------------- | --------------- | ----------- | ----------------------------------------------------------- | ----------- |
+| `buttonType`   | `button-type`   |             | `"primary" \| "secondary" \| "tertiary"`                    | `'primary'` |
 | `color`        | `color`         |             | `"blue" \| "gradient" \| "white" \| undefined`              | `undefined` |
 | `disabled`     | `disabled`      |             | `boolean`                                                   | `false`     |
 | `glow`         | `glow`          |             | `boolean \| undefined`                                      | `undefined` |
@@ -16,7 +17,6 @@
 | `iconPosition` | `icon-position` |             | `"left" \| "right"`                                         | `'left'`    |
 | `label`        | `label`         |             | `string \| undefined`                                       | `undefined` |
 | `loading`      | `loading`       |             | `boolean`                                                   | `false`     |
-| `role`         | `role`          |             | `"primary" \| "secondary" \| "tertiary"`                    | `'primary'` |
 | `size`         | `size`          |             | `"large" \| "medium" \| "small"`                            | `'medium'`  |
 | `variant`      | `variant`       |             | `"gradient" \| "outline" \| "solid" \| "text" \| undefined` | `undefined` |
 

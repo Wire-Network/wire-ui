@@ -1,4 +1,54 @@
 :host {
+  /* Default theme variables */
+  --wire-button-bg-primary: var(--ion-color-primary, var(--wire-color-primary, #44B2F5));
+  --wire-button-bg-secondary: var(--ion-color-secondary, var(--wire-color-secondary, #AC5FE6));
+  --wire-button-bg-tertiary: var(--ion-color-light, var(--wire-color-tertiary, #ffffff));
+  --wire-button-bg-outline: rgba(255, 255, 255, 0.9);
+  --wire-button-text-primary: var(--ion-color-text-dark, var(--wire-color-text-primary, #ffffff));
+  --wire-button-text-secondary: var(--ion-color-primary, var(--wire-color-text-secondary, #44B2F5));
+  --wire-button-text-secondary-gradient: var(--ion-color-dark, var(--wire-color-text-secondary-gradient, #1d1d1d));
+  --wire-button-text-tertiary: var(--ion-color-dark, var(--wire-color-text-tertiary, #000000));
+  --wire-button-border-primary: var(--ion-color-primary, var(--wire-color-border-primary, #44B2F5));
+  --wire-button-border-secondary: var(--ion-color-secondary, var(--wire-color-border-secondary, #AC5FE6));
+  --wire-button-border-tertiary: var(--ion-color-dark, var(--wire-color-border-tertiary, #000000));
+  --wire-button-glow-opacity: var(--wire-glow-opacity, 0.25);
+  --wire-button-glow-blur: var(--wire-glow-blur, 8px);
+
+
+  .wire-button--theme-light {
+    /* Light theme overrides */
+    --wire-button-bg-primary: var(--ion-color-primary, var(--wire-color-primary, #44B2F5));
+    --wire-button-bg-secondary: var(--ion-color-secondary, var(--wire-color-secondary, #AC5FE6));
+    --wire-button-bg-tertiary: var(--ion-color-light, var(--wire-color-tertiary, #ffffff));
+    --wire-button-bg-outline: rgba(255, 255, 255, 0.9);
+    --wire-button-text-primary: var(--ion-color-text-light, var(--wire-color-text-primary, #ffffff));
+    --wire-button-text-secondary: var(--ion-color-primary, var(--wire-color-text-secondary, #44B2F5));
+    --wire-button-text-secondary-gradient: var(--ion-color-dark, var(--wire-color-text-secondary-gradient, #1d1d1d));
+    --wire-button-text-tertiary: var(--ion-color-text-dark, var(--wire-color-text-tertiary, #000000));
+    --wire-button-border-primary: var(--ion-color-primary, var(--wire-color-border-primary, #44B2F5));
+    --wire-button-border-secondary: var(--ion-color-secondary, var(--wire-color-border-secondary, #AC5FE6));
+    --wire-button-border-tertiary: var(--ion-color-dark, var(--wire-color-border-tertiary, #000000));
+    --wire-button-glow-opacity: var(--wire-glow-opacity, 0.25);
+    --wire-button-glow-blur: var(--wire-glow-blur, 8px);
+  }
+  
+  .wire-button--theme-dark {
+    /* Dark theme overrides */
+    --wire-button-bg-primary: var(--ion-color-primary, var(--wire-color-primary-dark, #44B2F5));
+    --wire-button-bg-secondary: var(--ion-color-secondary, var(--wire-color-secondary-dark, #AC5FE6));
+    --wire-button-bg-tertiary: var(--ion-color-dark, var(--wire-color-tertiary-dark, #1d1d1d));
+    --wire-button-bg-outline: rgba(29, 29, 29, 0.9);
+    --wire-button-text-primary: var(--ion-color-text-light, var(--wire-color-text-primary-dark, #ffffff));
+    --wire-button-text-secondary: var(--ion-color-primary, var(--wire-color-text-secondary-dark, #44B2F5));
+    --wire-button-text-secondary-gradient: var(--ion-color-light, var(--wire-color-text-secondary-gradient, #ffffff));
+    --wire-button-text-tertiary: var(--ion-color-text-light, var(--wire-color-text-tertiary-dark, #ffffff));
+    --wire-button-border-primary: var(--ion-color-primary, var(--wire-color-border-primary-dark, #44B2F5));
+    --wire-button-border-secondary: var(--ion-color-secondary, var(--wire-color-border-secondary-dark, #AC5FE6));
+    --wire-button-border-tertiary: var(--ion-color-light, var(--wire-color-border-tertiary-dark, #ffffff));
+    --wire-button-glow-opacity: var(--wire-glow-opacity-dark, 0.4);
+    --wire-button-glow-blur: var(--wire-glow-blur-dark, 12px);
+  }
+
   button {
     @apply relative inline-block font-sora font-normal bg-transparent rounded-lg whitespace-nowrap border-0 cursor-pointer transition-all duration-200 z-[1];
   }
@@ -16,7 +66,7 @@
     }
 
     &.wire-button--has-icon .wire-button__content {
-      @apply px-4 py-[.65rem] ;
+      @apply px-4 py-[.65rem];
     }
 
     &.wire-button--icon-right .wire-button__content {
@@ -65,19 +115,26 @@
     }
 
     &.wire-button--color-blue .wire-button__content {
-      @apply bg-blue hover:bg-blue-dark;
+      background: var(--wire-button-bg-primary);
+      color: var(--wire-button-text-primary);
     }
 
     &.wire-button--color-white .wire-button__content {
-      @apply bg-white;
+      background: var(--wire-button-bg-tertiary);
+      color: var(--wire-button-text-tertiary);
+    }
+
+    &.wire-button--color-blue[style*="--wire-button-bg-override-rgb"] .wire-button__content {
+      background: rgb(var(--wire-button-bg-override-rgb));
+    }
+
+    &.wire-button--color-white[style*="--wire-button-bg-override-rgb"] .wire-button__content {
+      background: rgb(var(--wire-button-bg-override-rgb));
     }
 
     &.wire-button--color-gradient .wire-button__content {
-      @apply bg-gradient-to-r from-blue to-purple;
-
-      &:hover {
-        @apply bg-gradient-to-r from-blue-dark to-purple-dark;
-      }
+      background: linear-gradient(to right, var(--wire-button-bg-primary), var(--wire-button-bg-secondary));
+      color: var(--wire-button-text-primary);
     }
   }
 
@@ -86,7 +143,8 @@
     @apply p-[1px];
 
     .wire-button__content {
-      @apply relative rounded-[8px] bg-[rgba(255,255,255,0.9)] transition-all duration-200;
+      @apply relative rounded-[8px] transition-all duration-200;
+      background: var(--wire-button-bg-outline);
     }
 
     &.wire-button--color-blue {
@@ -117,9 +175,21 @@
         }
 
         .wire-button__content {
-          @apply bg-[rgba(255,255,255,1)];
+          background: var(--wire-button-bg-outline);
         }
       }
+
+      .wire-button__content {
+        color: var(--wire-button-text-secondary-gradient);
+      }
+    }
+
+    &[style*="--wire-button-bg-override-rgb"] .wire-button__content {
+      background: rgba(var(--wire-button-bg-override-rgb), 0.9);
+    }
+
+    &:hover[style*="--wire-button-bg-override-rgb"] .wire-button__content {
+      background: rgba(var(--wire-button-bg-override-rgb), 1);
     }
   }
 
@@ -130,21 +200,52 @@
     .wire-button__content {
       @apply rounded-lg;
     }
+
+    &.wire-button--color-blue {
+      color: var(--wire-button-text-primary);
+    }
+
+    &.wire-button--color-white {
+      color: var(--wire-button-text-secondary);
+    }
+
+    &.wire-button--color-gradient {
+      background: linear-gradient(to right, var(--wire-button-bg-primary), var(--wire-button-bg-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   /* Glow effect */
   .wire-button--glow {
     &::after {
-      @apply content-[''] absolute inset-0 -z-10  rounded-lg blur opacity-25;
-      background: linear-gradient(to right bottom, rgba(68,178,245,0.95), rgba(240,240,240,0.15) 50%, rgba(172,95,230,0.95)), linear-gradient(to right bottom, var(--blue), var(--purple));
+      @apply content-[''] absolute inset-0 -z-10 rounded-lg blur;
+      opacity: var(--wire-button-glow-opacity);
+      background: linear-gradient(to right bottom, 
+        var(--wire-button-bg-primary), 
+        rgba(240,240,240,0.15) 50%, 
+        var(--wire-button-bg-secondary)
+      );
+    }
+
+    &.wire-button--variant-outline {
+      .wire-button__content {
+        background: var(--wire-button-bg-outline);
+      }
+
+      &[style*="--wire-button-bg-override-rgb"] .wire-button__content {
+        background: rgba(var(--wire-button-bg-override-rgb), 0.9);
+      }
     }
 
     .wire-button__content {
       &::after {
-        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-transparent to-white rounded-full bottom-2 right-2 blur;
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 rounded-full bottom-2 right-2 blur;
+        background: linear-gradient(to right bottom, transparent, var(--wire-button-bg-tertiary));
       }
       &::before {
-        @apply content-[''] absolute w-1/4 h-1/4 -z-20 bg-gradient-to-br from-white to-transparent rounded-full top-2 left-2 blur;
+        @apply content-[''] absolute w-1/4 h-1/4 -z-20 rounded-full top-2 left-2 blur;
+        background: linear-gradient(to right bottom, var(--wire-button-bg-tertiary), transparent);
       }
     }
   }

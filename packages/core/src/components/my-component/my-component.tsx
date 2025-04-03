@@ -22,7 +22,7 @@ export class MyComponent {
   }
 
   render() {
-    return <div>
+    return <div class="dark">
       <div class="my-grid-header">
         <wire-logo mode="full-color"></wire-logo>
       </div>
@@ -78,8 +78,12 @@ export class MyComponent {
         <wire-button label="New Button" buttonType="secondary" size="large" color="gradient"></wire-button>
 
         <wire-button label="New Button" buttonType="secondary" size="small"></wire-button>
-        <wire-button label="New Button" buttonType="secondary"></wire-button>
+        <wire-button label="New Button" buttonType="secondary" size="medium"></wire-button>
         <wire-button label="New Button" buttonType="secondary" size="large"></wire-button>
+
+        <wire-button label="New Button" buttonType="secondary" size="small" glow={true}></wire-button>
+        <wire-button label="New Button" buttonType="secondary" size="medium" glow={true}></wire-button>
+        <wire-button label="New Button" buttonType="secondary" size="large" glow={true}></wire-button>
 
         <wire-button label="New Button" buttonType="tertiary" size="small"></wire-button>
         <wire-button label="New Button" buttonType="tertiary"></wire-button>
@@ -92,6 +96,10 @@ export class MyComponent {
         <wire-button label="New Button" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right"></wire-button>
         <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right"></wire-button>
         <wire-button label="New Button" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right"></wire-button>
+
+        <wire-button label="New Button" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
+        <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
+        <wire-button label="New Button" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
         
         {/* <wire-button label="Button" color="blue" size="large"></wire-button>
         <wire-button label="Button" color="blue" size="large" icon="coin" iconPosition="left"></wire-button>
