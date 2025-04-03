@@ -24,8 +24,8 @@
   --navy: #556CC9;
   --periwinkle: #7A98ED;
   --sky-blue: #59CCEC;
-  --gray-95: #1D1D1D;
-  --gray-05: #FFFFFD;
+  --wire-gray-95: #1D1D1D;
+  --wire-gray-05: #FFFFFD;
 
   --gradient-primary: linear-gradient( 0deg, var(--blue) 0%, var(--purple) 100% );
   --gradient-primary-50: linear-gradient( 0deg, rgb(var(--blue-rgb),.3) 0%, rgb(var(--purple-rgb), .3) 100% );
@@ -46,22 +46,22 @@
   --navy-rgb: 85, 108, 201;
   --periwinkle-rgb: 122, 152, 237;
   --sky-blue-rgb: 89, 204, 236;
-  --gray-95-rgb: 29, 29, 29;
-  --gray-05-rgb: 255, 255, 253;
+  --wire-gray-95-rgb: 29, 29, 29;
+  --wire-gray-05-rgb: 255, 255, 253;
 
   /* Gray Steps */
-  --gray-100: rgb(var(--gray-95-rgb), 1);
-  --gray-95: #1D1D1D;
-  --gray-90: #282828;
-  --gray-80: #3f3f3f;
-  --gray-70: #565655;
-  --gray-60: #6c6c6b;
-  --gray-50: #8e8e8d;
-  --gray-40: #b0b0af;
-  --gray-30: #c6c6c5;
-  --gray-20: #dddddb;
-  --gray-10: #f4f4f2;
-  --gray-05: #fffffd;
+  --wire-gray-100: rgb(var(--wire-gray-95-rgb), 1);
+  --wire-gray-95: #1D1D1D;
+  --wire-gray-90: #282828;
+  --wire-gray-80: #3f3f3f;
+  --wire-gray-70: #565655;
+  --wire-gray-60: #6c6c6b;
+  --wire-gray-50: #8e8e8d;
+  --wire-gray-40: #b0b0af;
+  --wire-gray-30: #c6c6c5;
+  --wire-gray-20: #dddddb;
+  --wire-gray-10: #f4f4f2;
+  --wire-gray-05: #fffffd;
 
   /** Sizing Variables **/
   --menu-width: 0px;

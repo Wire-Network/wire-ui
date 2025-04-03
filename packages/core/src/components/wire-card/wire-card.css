@@ -6,27 +6,28 @@
   }
 
   .wire-card--theme-light {
-    @apply bg-white border-gray-200 ring-gray-200;
+    @apply border-gray-200 ring-gray-200;
+    background: var(--wire-gray-05);
 
     .body {
       @apply text-gray-500;
     }
 
     .title {
-      color: var(--gray-90);
+      color: var(--wire-gray-90);
     }
   }
 
   .wire-card--theme-dark {
     @apply border-gray-800 ring-gray-800;
-    background: var(--gray-90);
+    background: var(--wire-gray-90);
 
     .body {
       @apply text-gray-400;
     }
 
     .title {
-      color: var(--gray-05);
+      color: var(--wire-gray-05);
     }
   }
 

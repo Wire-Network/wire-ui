@@ -22,7 +22,7 @@ export class MyComponent {
   }
 
   render() {
-    return <div class="">
+    return <div class="dark">
       <div class="my-grid-header">
         <wire-logo mode="full-color"></wire-logo>
       </div>
