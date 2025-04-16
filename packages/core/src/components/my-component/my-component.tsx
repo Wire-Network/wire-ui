@@ -32,6 +32,39 @@ export class MyComponent {
   }
 
   render() {
+    const exampleSteps = [
+      {
+        id: 'step1',
+        title: 'Personal Info',
+        description: 'Enter your basic information',
+        content: <div>
+          <h3>Personal Information</h3>
+          <p>Please enter your name and email address.</p>
+          <wire-button label="Validate" color="blue"></wire-button>
+        </div>
+      },
+      {
+        id: 'step2',
+        title: 'Account Setup',
+        description: 'Create your account credentials',
+        content: <div>
+          <h3>Account Setup</h3>
+          <p>Choose a username and password for your account.</p>
+          <wire-button label="Validate" color="blue"></wire-button>
+        </div>
+      },
+      {
+        id: 'step3',
+        title: 'Preferences',
+        description: 'Set your preferences',
+        content: <div>
+          <h3>Preferences</h3>
+          <p>Select your preferred settings and notifications.</p>
+          <wire-button label="Validate" color="blue"></wire-button>
+        </div>
+      }
+    ];
+
     return <div class={this.isDarkMode ? 'dark' : 'light'}>
       <div class="my-grid-header">
         <wire-logo mode="full-color"></wire-logo>
@@ -41,6 +74,32 @@ export class MyComponent {
           onClick={() => this.toggleTheme()}
         ></wire-button>
       </div>
+      <div class="my-grid-header">
+        <h2>Stepper - Horizontal</h2>
+      </div>
+      <div class="my-grid">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="horizontal"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
+      <div class="my-grid-header">
+        <h2>Stepper - Vertical</h2>
+      </div>
+      <div class="my-grid">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="vertical"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
       <div class="my-grid-header">
         <h2>Toast</h2>
       </div>

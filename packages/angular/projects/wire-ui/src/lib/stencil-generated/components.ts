@@ -96,6 +96,36 @@ export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({
+  inputs: ['currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'steps']
+})
+@Component({
+  selector: 'wire-stepper',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'steps'],
+})
+export class WireStepper {
+  protected el: HTMLWireStepperElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['stepChanged', 'finished', 'cancelled']);
+  }
+}
+
+
+export declare interface WireStepper extends Components.WireStepper {
+
+  stepChanged: EventEmitter<CustomEvent<number>>;
+
+  finished: EventEmitter<CustomEvent<void>>;
+
+  cancelled: EventEmitter<CustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   inputs: ['active', 'disabled', 'tab']
 })
 @Component({
