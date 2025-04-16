@@ -1,0 +1,209 @@
+:host {
+  display: block;
+  --primary-color: var(--blue);
+  --secondary-color: var(--wire-gray-05);
+  --text-color: var(--wire-gray-90);
+  --border-color: var(--wire-gray-20);
+  --success-color: var(--green);
+  --error-color: var(--red);
+  --spacing-unit: 1rem;
+}
+
+.wire-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  padding: var(--spacing-unit);
+  color: var(--text-color);
+}
+
+/* Horizontal orientation */
+.wire-stepper.horizontal {
+  flex-direction: column;
+}
+
+.wire-stepper.horizontal .step-indicators {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: var(--spacing-unit) 0;
+}
+
+.wire-stepper.horizontal .step-indicators::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--border-color);
+  z-index: 1;
+}
+
+.wire-stepper.horizontal .step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  padding: 0 var(--spacing-unit);
+}
+
+/* Vertical orientation */
+.wire-stepper.vertical {
+  flex-direction: row;
+}
+
+.wire-stepper.vertical .step-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  min-width: 200px;
+  padding-right: var(--spacing-unit);
+  border-right: 1px solid var(--border-color);
+}
+
+.wire-stepper.vertical .step-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-unit);
+}
+
+/* Common styles for both orientations */
+.step-indicator {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--border-color);
+  font-weight: bold;
+}
+
+.step-indicator.active .step-number {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.step-indicator.completed .step-number {
+  background-color: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-title {
+  font-weight: bold;
+}
+
+.step-description {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.step-content {
+  flex: 1;
+  padding: var(--spacing-unit);
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-unit);
+  padding: var(--spacing-unit);
+  border-top: 1px solid var(--border-color);
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button.prev {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.button.next {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button.cancel {
+  background-color: transparent;
+  color: var(--error-color);
+}
+
+.processing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .wire-stepper.vertical {
+    flex-direction: column;
+  }
+
+  .wire-stepper.vertical .step-indicators {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-right: 0;
+    padding-bottom: var(--spacing-unit);
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .wire-stepper.vertical .step-indicator {
+    min-width: 120px;
+  }
+} 
