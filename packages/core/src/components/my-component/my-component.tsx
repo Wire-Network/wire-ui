@@ -7,6 +7,7 @@ import { Component, h, State, Element } from '@stencil/core';
 })
 export class MyComponent {
   @State() toastCount = 0;
+  @State() isDarkMode = true;
   @Element() el!: HTMLElement;
 
   private showToast() {
@@ -21,10 +22,24 @@ export class MyComponent {
     }
   }
 
+  private toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    const root = this.el.closest('.dark, .light');
+    if (root) {
+      root.classList.remove('dark', 'light');
+      root.classList.add(this.isDarkMode ? 'dark' : 'light');
+    }
+  }
+
   render() {
-    return <div class="dark">
+    return <div class={this.isDarkMode ? 'dark' : 'light'}>
       <div class="my-grid-header">
         <wire-logo mode="full-color"></wire-logo>
+        <wire-button 
+          label={this.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} 
+          buttonType="secondary"
+          onClick={() => this.toggleTheme()}
+        ></wire-button>
       </div>
       <div class="my-grid-header">
         <h2>Toast</h2>

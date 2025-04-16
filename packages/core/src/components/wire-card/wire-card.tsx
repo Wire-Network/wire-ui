@@ -1,4 +1,5 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
+import { ThemeObserver } from '../../utils/theme-observer';
 
 @Component({
   tag: 'wire-card',
@@ -12,8 +13,10 @@ export class WireCard {
   @Prop() actions?: HTMLElement;
   @Prop() theme?: 'light' | 'dark';
 
+  @State() currentTheme: 'light' | 'dark' = 'light';
+
   private get computedTheme(): 'light' | 'dark' {
-    // Priority: explicit prop > data attribute > parent theme classes
+    // Priority: explicit prop > data attribute > Ionic theme > parent theme classes
     if (this.theme) {
       return this.theme;
     }
@@ -22,6 +25,12 @@ export class WireCard {
     const parentTheme = document.documentElement.getAttribute('data-theme');
     if (parentTheme === 'dark' || parentTheme === 'light') {
       return parentTheme;
+    }
+
+    // Check for Ionic dark mode
+    const ionApp = document.querySelector('ion-app');
+    if (ionApp?.classList.contains('dark-theme')) {
+      return 'dark';
     }
 
     // Check for parent theme classes
@@ -33,12 +42,27 @@ export class WireCard {
     return 'light';
   }
 
+  connectedCallback() {
+    // Set initial theme
+    this.currentTheme = this.computedTheme;
+
+    // Use the shared theme observer
+    ThemeObserver.getInstance().observe(this, this.el, () => {
+      this.currentTheme = this.computedTheme;
+    });
+  }
+
+  disconnectedCallback() {
+    // Disconnect from the shared theme observer
+    ThemeObserver.getInstance().disconnect(this);
+  }
+
   render() {
     return (
       <div class={{
         'wire-card': true,
-        'wire-card--theme-light': this.computedTheme === 'light',
-        'wire-card--theme-dark': this.computedTheme === 'dark'
+        'wire-card--theme-light': this.currentTheme === 'light',
+        'wire-card--theme-dark': this.currentTheme === 'dark'
       }}>
         <header>
           <h3 class="title">
