@@ -7,7 +7,7 @@ import { Component, h, State, Element } from '@stencil/core';
 })
 export class MyComponent {
   @State() toastCount = 0;
-  @State() isDarkMode = true;
+  @State() isDarkMode = false;
   @Element() el!: HTMLElement;
 
   private showToast() {
@@ -40,7 +40,6 @@ export class MyComponent {
         content: <div>
           <h3>Personal Information</h3>
           <p>Please enter your name and email address.</p>
-          <wire-button label="Validate" color="blue"></wire-button>
         </div>
       },
       {
@@ -50,7 +49,6 @@ export class MyComponent {
         content: <div>
           <h3>Account Setup</h3>
           <p>Choose a username and password for your account.</p>
-          <wire-button label="Validate" color="blue"></wire-button>
         </div>
       },
       {
@@ -60,7 +58,6 @@ export class MyComponent {
         content: <div>
           <h3>Preferences</h3>
           <p>Select your preferred settings and notifications.</p>
-          <wire-button label="Validate" color="blue"></wire-button>
         </div>
       }
     ];
@@ -77,7 +74,7 @@ export class MyComponent {
       <div class="my-grid-header">
         <h2>Stepper - Horizontal</h2>
       </div>
-      <div class="my-grid">
+      <div class="my-grid-header">
         <wire-stepper
           steps={exampleSteps}
           orientation="horizontal"
@@ -88,12 +85,68 @@ export class MyComponent {
       </div>
 
       <div class="my-grid-header">
+        <h2>Stepper - Horizontal (Numbers)</h2>
+      </div>
+      <div class="my-grid-header">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="horizontal"
+          stepNumberStyle="numbers"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
+      <div class="my-grid-header">
+        <h2>Stepper - Horizontal (Circles)</h2>
+      </div>
+      <div class="my-grid-header">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="horizontal"
+          stepNumberStyle="circles"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
+      <div class="my-grid-header">
         <h2>Stepper - Vertical</h2>
       </div>
-      <div class="my-grid">
+      <div class="my-grid-header">
         <wire-stepper
           steps={exampleSteps}
           orientation="vertical"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
+      <div class="my-grid-header">
+        <h2>Stepper - Vertical (Numbers)</h2>
+      </div>
+      <div class="my-grid-header">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="vertical"
+          stepNumberStyle="numbers"
+          nextButtonText="Continue"
+          prevButtonText="Previous"
+          finishButtonText="Complete"
+        ></wire-stepper>
+      </div>
+
+      <div class="my-grid-header">
+        <h2>Stepper - Vertical (Circles)</h2>
+      </div>
+      <div class="my-grid-header">
+        <wire-stepper
+          steps={exampleSteps}
+          orientation="vertical"
+          stepNumberStyle="circles"
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"

@@ -96,14 +96,14 @@ export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({
-  inputs: ['currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'steps']
+  inputs: ['cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps']
 })
 @Component({
   selector: 'wire-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'steps'],
+  inputs: ['cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps'],
 })
 export class WireStepper {
   protected el: HTMLWireStepperElement;
@@ -116,11 +116,17 @@ export class WireStepper {
 
 
 export declare interface WireStepper extends Components.WireStepper {
-
+  /**
+   * Step change event
+   */
   stepChanged: EventEmitter<CustomEvent<number>>;
-
+  /**
+   * Flow finished event
+   */
   finished: EventEmitter<CustomEvent<void>>;
-
+  /**
+   * Cancellation event
+   */
   cancelled: EventEmitter<CustomEvent<void>>;
 }
 

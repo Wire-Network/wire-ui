@@ -11,6 +11,7 @@
 
 - [wire-logo](../wire-logo)
 - [wire-button](../wire-button)
+- [wire-stepper](../wire-stepper)
 - [wire-card](../wire-card)
 - [wire-icon](../wire-icon)
 - [wire-tabs](../wire-tabs)
@@ -21,11 +22,13 @@
 graph TD;
   my-component --> wire-logo
   my-component --> wire-button
+  my-component --> wire-stepper
   my-component --> wire-card
   my-component --> wire-icon
   my-component --> wire-tabs
   my-component --> wire-tab
   wire-button --> wire-icon
+  wire-stepper --> wire-button
   wire-card --> wire-icon
   style my-component fill:#f9f,stroke:#333,stroke-width:4px
 ```
