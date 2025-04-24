@@ -71,18 +71,6 @@ export class MyComponent {
           onClick={() => this.toggleTheme()}
         ></wire-button>
       </div>
-      <div class="my-grid-header">
-        <h2>Stepper - Horizontal</h2>
-      </div>
-      <div class="my-grid-header">
-        <wire-stepper
-          steps={exampleSteps}
-          orientation="horizontal"
-          nextButtonText="Continue"
-          prevButtonText="Previous"
-          finishButtonText="Complete"
-        ></wire-stepper>
-      </div>
 
       <div class="my-grid-header">
         <h2>Stepper - Horizontal (Numbers)</h2>
@@ -95,6 +83,8 @@ export class MyComponent {
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"
+          showCancelButton={true}
+          cancelButtonText="Cancel"
         ></wire-stepper>
       </div>
 
@@ -106,19 +96,6 @@ export class MyComponent {
           steps={exampleSteps}
           orientation="horizontal"
           stepNumberStyle="circles"
-          nextButtonText="Continue"
-          prevButtonText="Previous"
-          finishButtonText="Complete"
-        ></wire-stepper>
-      </div>
-
-      <div class="my-grid-header">
-        <h2>Stepper - Vertical</h2>
-      </div>
-      <div class="my-grid-header">
-        <wire-stepper
-          steps={exampleSteps}
-          orientation="vertical"
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"

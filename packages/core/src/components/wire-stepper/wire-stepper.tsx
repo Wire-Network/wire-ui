@@ -5,6 +5,7 @@ export interface Step {
   title: string;
   description?: string;
   content: any;
+  contentType?: 'html' | 'component' | 'text';
   validate?: () => boolean | Promise<boolean>;
 }
 
@@ -127,7 +128,16 @@ export class WireStepper {
         </div>
 
         <div class="step-content" role="tabpanel">
-          {currentStep.content}
+          {(() => {
+            switch (currentStep.contentType) {
+              case 'html':
+                return <div innerHTML={currentStep.content}></div>;
+              case 'text':
+                return <div>{currentStep.content}</div>;
+              default: // 'component' or undefined
+                return currentStep.content;
+            }
+          })()}
 
           <div class="navigation-buttons">
             {this.showCancelButton && (
