@@ -30,6 +30,7 @@
 ### Used by
 
  - [my-component](../my-component)
+ - [wire-stepper](../wire-stepper)
 
 ### Depends on
 
@@ -40,6 +41,7 @@
 graph TD;
   wire-button --> wire-icon
   my-component --> wire-button
+  wire-stepper --> wire-button
   style wire-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
