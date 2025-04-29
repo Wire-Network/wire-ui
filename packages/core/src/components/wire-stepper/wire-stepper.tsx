@@ -21,8 +21,8 @@ export class WireStepper {
   /** Array of step objects */
   @Prop() steps: Step[] = [];
 
-  /** Active step index */
-  @Prop({ mutable: true }) currentStep: number = 0;
+  /** Initial step index */
+  @Prop() currentStep: number = 0;
 
   /** Button label customization */
   @Prop() nextButtonText: string = 'Next';
@@ -59,6 +59,9 @@ export class WireStepper {
   @Event() cancelled!: EventEmitter<void>;
 
   @State() private isProcessing: boolean = false;
+  @State() private _currentStep: number = 0;
+  @State() private stepContent: any = null;
+  @State() private stepKey: string = '';
   @State() themeState: ThemeState = {
     currentTheme: 'light',
     themeStyles: {}
@@ -77,9 +80,13 @@ export class WireStepper {
     };
   }
 
+  componentWillLoad() {
+    this._currentStep = this.currentStep;
+    this.updateStepContent();
+  }
+
   connectedCallback() {
     this.themeService.connect(this, this.el, this.themeConfig, (state) => {
-      console.log('Stepper theme state changed:', state);
       this.themeState = state;
     });
   }
@@ -89,8 +96,77 @@ export class WireStepper {
   }
 
   @Watch('currentStep')
+  handleCurrentStepPropChange(newValue: number) {
+    this._currentStep = newValue;
+    this.updateStepContent();
+  }
+
+  @Watch('_currentStep')
   handleCurrentStepChange(newValue: number) {
+    this.updateStepContent();
     this.stepChanged.emit(newValue);
+  }
+
+  private updateStepContent() {
+    const currentStep = this.steps[this._currentStep];
+    if (currentStep) {
+      this.stepKey = `${currentStep.id}-${this._currentStep}-${Date.now()}`;
+      this.stepContent = this.renderStepContent(currentStep.content, this.stepKey);
+    }
+  }
+
+  private renderStepContent(content: any, stepKey: string) {
+    if (typeof content === 'string') {
+      return <div key={`${stepKey}-content`}>{content}</div>;
+    }
+    
+    if (content && typeof content === 'object') {
+      const cloneWithKeys = (node: any, parentKey: string, index: number = 0): any => {
+        if (!node) return node;
+        
+        if (typeof node === 'string' || typeof node === 'number') {
+          return node;
+        }
+        
+        if (Array.isArray(node)) {
+          return node.map((item: any, i: number) => cloneWithKeys(item, `${parentKey}-${i}`, i));
+        }
+        
+        if (node.type) {
+          const newProps = { ...node.props };
+          if (!newProps.key) {
+            newProps.key = `${parentKey}-${node.type}-${index}-${Date.now()}`;
+          }
+          
+          if (newProps.children) {
+            if (Array.isArray(newProps.children)) {
+              newProps.children = newProps.children.map((child: any, i: number) => 
+                cloneWithKeys(child, newProps.key, i)
+              );
+            } else {
+              newProps.children = cloneWithKeys(newProps.children, newProps.key);
+            }
+          }
+          
+          return {
+            ...node,
+            props: newProps
+          };
+        }
+        
+        return node;
+      };
+      
+      const clonedContent = cloneWithKeys(content, stepKey);
+      
+      if (clonedContent.type && clonedContent.type !== 'div') {
+        return <div key={`${stepKey}-wrapper-${Date.now()}`}>{clonedContent}</div>;
+      }
+      
+      return clonedContent;
+    }
+    
+    return content;
   }
 
   private async validateStep(step: Step): Promise<boolean> {
@@ -108,7 +184,7 @@ export class WireStepper {
   private async handleNext() {
     if (this.isProcessing) return;
     
-    const currentStep = this.steps[this.currentStep];
+    const currentStep = this.steps[this._currentStep];
     if (this.isLinear && currentStep.validate) {
       this.isProcessing = true;
       const isValid = await this.validateStep(currentStep);
@@ -117,16 +193,18 @@ export class WireStepper {
       if (!isValid) return;
     }
 
-    if (this.currentStep < this.steps.length - 1) {
-      this.currentStep++;
+    if (this._currentStep < this.steps.length - 1) {
+      this._currentStep++;
+      this.updateStepContent();
     } else {
       this.finished.emit();
     }
   }
 
   private handlePrevious() {
-    if (this.currentStep > 0) {
-      this.currentStep--;
+    if (this._currentStep > 0) {
+      this._currentStep--;
+      this.updateStepContent();
     }
   }
 
@@ -135,10 +213,8 @@ export class WireStepper {
   }
 
   render() {
-    const currentStep = this.steps[this.currentStep];
-    const isLastStep = this.currentStep === this.steps.length - 1;
-    
-    console.log('Stepper rendering with theme:', this.themeState.currentTheme);
+    const currentStep = this.steps[this._currentStep];
+    const isLastStep = this._currentStep === this.steps.length - 1;
 
     return (
       <div 
@@ -151,11 +227,12 @@ export class WireStepper {
         <div class="step-indicators">
           {this.steps.map((step, index) => (
             <div
-              class={`step-indicator ${index === this.currentStep ? 'active' : ''} ${
-                index < this.currentStep ? 'completed' : ''
+              key={`step-${step.id}-${index}-${Date.now()}`}
+              class={`step-indicator ${index === this._currentStep ? 'active' : ''} ${
+                index < this._currentStep ? 'completed' : ''
               }`}
               role="listitem"
-              aria-current={index === this.currentStep ? 'step' : undefined}
+              aria-current={index === this._currentStep ? 'step' : undefined}
               data-theme={this.themeState.currentTheme}
             >
               <div class={`step-number ${this.stepNumberStyle}`}>
@@ -175,17 +252,18 @@ export class WireStepper {
           {(() => {
             switch (currentStep.contentType) {
               case 'html':
-                return <div innerHTML={currentStep.content}></div>;
+                return <div key={`${this.stepKey}-html`} innerHTML={currentStep.content}></div>;
               case 'text':
-                return <div>{currentStep.content}</div>;
+                return <div key={`${this.stepKey}-text`}>{currentStep.content}</div>;
               default: // 'component' or undefined
-                return currentStep.content;
+                return this.stepContent;
             }
           })()}
 
           <div class="navigation-buttons" data-theme={this.themeState.currentTheme}>
             {this.showCancelButton && (
               <wire-button 
+                key={`${this.stepKey}-cancel`}
                 label={this.cancelButtonText}
                 buttonType="tertiary"
                 onClick={() => this.handleCancel()}
@@ -197,17 +275,19 @@ export class WireStepper {
             )}
 
             <wire-button 
+              key={`${this.stepKey}-prev`}
               label={this.prevButtonText}
               color="gradient"
               buttonType="secondary"
               onClick={() => this.handlePrevious()}
-              disabled={this.currentStep === 0 || this.isProcessing}
+              disabled={this._currentStep === 0 || this.isProcessing}
               useSystemPreference={this.useSystemPreference}
               bgLight={this.bgLight}
               bgDark={this.bgDark}
             ></wire-button>
 
             <wire-button
+              key={`${this.stepKey}-next`}
               label={isLastStep ? this.finishButtonText : this.nextButtonText}
               color="gradient"
               buttonType="primary"
@@ -228,4 +308,4 @@ export class WireStepper {
       </div>
     );
   }
-} 
+}

@@ -76,11 +76,9 @@ export class ThemeService {
   }
 
   private computeTheme(element: HTMLElement, config: ThemeConfig): 'light' | 'dark' {
-    console.log('Computing theme with config:', config);
     
     // Priority: explicit prop > data-theme attribute > parent theme classes > system preference
     if (config.theme) {
-      console.log('Using explicit theme:', config.theme);
       return config.theme;
     }
     
@@ -89,7 +87,6 @@ export class ThemeService {
     if (elementWithTheme) {
       const theme = elementWithTheme.getAttribute('data-theme');
       if (theme === 'dark' || theme === 'light') {
-        console.log('Using data-theme attribute from parent:', theme);
         return theme;
       }
     }
@@ -97,7 +94,6 @@ export class ThemeService {
     // Check for Ionic dark mode
     const ionApp = document.querySelector('ion-app');
     if (ionApp?.classList.contains('dark-theme')) {
-      console.log('Using Ionic dark theme');
       return 'dark';
     }
 
@@ -105,17 +101,14 @@ export class ThemeService {
     const parentElement = element.closest('.dark-theme, .dark, .light-theme, .light');
     if (parentElement) {
       const theme = parentElement.classList.contains('dark-theme') || parentElement.classList.contains('dark') ? 'dark' : 'light';
-      console.log('Using parent theme class:', theme);
       return theme;
     }
 
     // Only use system theme if useSystemPreference is true
     if (config.useSystemPreference && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      console.log('Using system preference: dark');
       return 'dark';
     }
 
-    console.log('Using default theme: light');
     return 'light';
   }
 

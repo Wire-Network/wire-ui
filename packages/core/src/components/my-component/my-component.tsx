@@ -8,7 +8,62 @@ import { Component, h, State, Element } from '@stencil/core';
 export class MyComponent {
   @State() toastCount = 0;
   @State() isDarkMode = false;
+  @State() horizontalNumbersSteps: any[] = [];
+  @State() horizontalCirclesSteps: any[] = [];
+  @State() verticalNumbersSteps: any[] = [];
+  @State() verticalCirclesSteps: any[] = [];
   @Element() el!: HTMLElement;
+
+  componentWillLoad() {
+    this.initializeSteps();
+  }
+
+  private initializeSteps() {
+    this.horizontalNumbersSteps = this.createSteps('horizontal-numbers');
+    this.horizontalCirclesSteps = this.createSteps('horizontal-circles');
+    this.verticalNumbersSteps = this.createSteps('vertical-numbers');
+    this.verticalCirclesSteps = this.createSteps('vertical-circles');
+  }
+
+  private createSteps(prefix: string) {
+    const steps = [
+      {
+        id: `${prefix}-step1`,
+        title: 'Personal Info',
+        description: 'Please enter your name and email address.',
+        content: (
+          <div>
+            <h3>Personal Information</h3>
+            <p>Please enter your name and email address.</p>
+          </div>
+        )
+      },
+      {
+        id: `${prefix}-step2`,
+        title: 'Account Setup',
+        description: 'Choose a username and password for your account.',
+        content: (
+          <div>
+            <h3>Account Setup</h3>
+            <p>Choose a username and password for your account.</p>
+          </div>
+        )
+      },
+      {
+        id: `${prefix}-step3`,
+        title: 'Preferences',
+        description: 'Select your preferred settings and notifications.',
+        content: (
+          <div>
+            <h3>Preferences</h3>
+            <p>Select your preferred settings and notifications.</p>
+          </div>
+        )
+      }
+    ];
+
+    return steps;
+  }
 
   private showToast() {
     const toast = document.body.querySelector('wire-toast') as HTMLWireToastElement;
@@ -32,36 +87,6 @@ export class MyComponent {
   }
 
   render() {
-    const exampleSteps = [
-      {
-        id: 'step1',
-        title: 'Personal Info',
-        description: 'Enter your basic information',
-        content: <div>
-          <h3>Personal Information</h3>
-          <p>Please enter your name and email address.</p>
-        </div>
-      },
-      {
-        id: 'step2',
-        title: 'Account Setup',
-        description: 'Create your account credentials',
-        content: <div>
-          <h3>Account Setup</h3>
-          <p>Choose a username and password for your account.</p>
-        </div>
-      },
-      {
-        id: 'step3',
-        title: 'Preferences',
-        description: 'Set your preferences',
-        content: <div>
-          <h3>Preferences</h3>
-          <p>Select your preferred settings and notifications.</p>
-        </div>
-      }
-    ];
-
     return <div class={this.isDarkMode ? 'dark' : 'light'}>
       <div class="my-grid-header">
         <wire-logo mode="full-color"></wire-logo>
@@ -77,7 +102,7 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={exampleSteps}
+          steps={this.horizontalNumbersSteps}
           orientation="horizontal"
           stepNumberStyle="numbers"
           nextButtonText="Continue"
@@ -93,7 +118,7 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={exampleSteps}
+          steps={this.horizontalCirclesSteps}
           orientation="horizontal"
           stepNumberStyle="circles"
           nextButtonText="Continue"
@@ -107,7 +132,7 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={exampleSteps}
+          steps={this.verticalNumbersSteps}
           orientation="vertical"
           stepNumberStyle="numbers"
           nextButtonText="Continue"
@@ -121,7 +146,7 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={exampleSteps}
+          steps={this.verticalCirclesSteps}
           orientation="vertical"
           stepNumberStyle="circles"
           nextButtonText="Continue"
