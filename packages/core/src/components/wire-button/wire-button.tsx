@@ -1,5 +1,5 @@
 import { Component, h, Prop, State, Element } from '@stencil/core';
-import { ThemeObserver } from '../../utils/theme-observer';
+import { ThemeService, ThemeConfig, ThemeState } from '../../utils/theme-service';
 
 @Component({
   tag: 'wire-button',
@@ -31,73 +31,33 @@ export class WireButton {
   @Prop() icon?: string;
   @Prop() iconPosition: 'left' | 'right' = 'left';
 
-  @State() currentTheme: 'light' | 'dark' = 'light';
+  @State() themeState: ThemeState = {
+    currentTheme: 'light',
+    themeStyles: {}
+  };
 
-  private get computedTheme(): 'light' | 'dark' {
-    // Priority: explicit prop > data attribute > Ionic theme > parent theme classes > system preference
-    if (this.theme) {
-      return this.theme;
-    }
-    
-    // Check for data-theme attribute
-    const parentTheme = document.documentElement.getAttribute('data-theme');
-    if (parentTheme === 'dark' || parentTheme === 'light') {
-      return parentTheme;
-    }
+  private themeService: ThemeService;
+  private themeConfig: ThemeConfig;
 
-    // Check for Ionic dark mode
-    const ionApp = document.querySelector('ion-app');
-    if (ionApp?.classList.contains('dark-theme')) {
-      return 'dark';
-    }
-
-    // Check for parent theme classes
-    const parentElement = this.el.closest('.dark-theme, .dark, .light-theme, .light');
-    if (parentElement) {
-      return parentElement.classList.contains('dark-theme') || parentElement.classList.contains('dark') ? 'dark' : 'light';
-    }
-
-    // Only use system theme if useSystemPreference is true
-    if (this.useSystemPreference && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-
-    return 'light';
+  constructor() {
+    this.themeService = ThemeService.getInstance();
+    this.themeConfig = {
+      theme: this.theme,
+      useSystemPreference: this.useSystemPreference,
+      bgLight: this.bgLight,
+      bgDark: this.bgDark
+    };
   }
 
   connectedCallback() {
-    // Set initial theme
-    this.currentTheme = this.computedTheme;
-
-    if (this.useSystemPreference) {
-      this.updateSystemTheme();
-      if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.updateSystemTheme);
-      }
-    }
-
-    // Use the shared theme observer
-    ThemeObserver.getInstance().observe(this, this.el, () => {
-      this.currentTheme = this.computedTheme;
+    this.themeService.connect(this, this.el, this.themeConfig, (state) => {
+      this.themeState = state;
     });
   }
 
   disconnectedCallback() {
-    if (this.useSystemPreference && window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.updateSystemTheme);
-    }
-
-    // Disconnect from the shared theme observer
-    ThemeObserver.getInstance().disconnect(this);
+    this.themeService.disconnect(this);
   }
-
-  private updateSystemTheme = () => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.currentTheme = 'dark';
-    } else {
-      this.currentTheme = 'light';
-    }
-  };
 
   // Determine the variant based on the buttonType if not explicitly set.
   private get computedVariant(): 'solid' | 'outline' | 'text' | 'gradient' {
@@ -142,46 +102,26 @@ export class WireButton {
     return this.glow ?? false;
   }
 
-  // Helper method to convert hex to RGB
-  private hexToRgb(hex: string): string {
-    // Remove # if present
-    hex = hex.replace('#', '');
-    
-    // Parse the hex values
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    
-    return `${r}, ${g}, ${b}`;
-  }
-
   render() {
-    const overrideRgb = this.currentTheme === 'light' && this.bgLight 
-      ? this.hexToRgb(this.bgLight)
-      : this.currentTheme === 'dark' && this.bgDark
-      ? this.hexToRgb(this.bgDark)
-      : null;
-
     return (
-      <button class={{
-        'wire-button': true,
-        // Semantic buttonType class: makes it clear what the button's purpose is.
-        [`wire-button--type-${this.buttonType}`]: true,
-        // Visual treatment based on computed variant.
-        [`wire-button--variant-${this.computedVariant}`]: true,
-        // Color class: either the default (computed) or the override.
-        [`wire-button--color-${this.computedColor}`]: true,
-        [`wire-button--size-${this.size}`]: true,
-        'wire-button--disabled': this.disabled,
-        'wire-button--loading': this.loading,
-        'wire-button--has-icon': !!this.icon,
-        [`wire-button--icon-${this.iconPosition}`]: !!this.icon,
-        'wire-button--glow': this.computedGlow,
-        'wire-button--no-glow': !this.computedGlow,
-        // Theme class
-        'wire-button--theme-dark': this.currentTheme === 'dark',
-        'wire-button--theme-light': this.currentTheme === 'light',
-      }} {...(overrideRgb ? { style: { '--wire-button-bg-override-rgb': overrideRgb } } : {})}>
+      <button 
+        class={{
+          'wire-button': true,
+          [`wire-button--type-${this.buttonType}`]: true,
+          [`wire-button--variant-${this.computedVariant}`]: true,
+          [`wire-button--color-${this.computedColor}`]: true,
+          [`wire-button--size-${this.size}`]: true,
+          'wire-button--disabled': this.disabled,
+          'wire-button--loading': this.loading,
+          'wire-button--has-icon': !!this.icon,
+          [`wire-button--icon-${this.iconPosition}`]: !!this.icon,
+          'wire-button--glow': this.computedGlow,
+          'wire-button--no-glow': !this.computedGlow,
+          'wire-button--theme-dark': this.themeState.currentTheme === 'dark',
+          'wire-button--theme-light': this.themeState.currentTheme === 'light',
+        }} 
+        style={this.themeState.themeStyles}
+      >
         <div class="wire-button__content">
           {this.icon && this.iconPosition === 'left' && <wire-icon name={this.icon} size={this.size} />}
           {this.label}

@@ -96,14 +96,14 @@ export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({
-  inputs: ['cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps']
+  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps', 'theme', 'useSystemPreference']
 })
 @Component({
   selector: 'wire-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps'],
+  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps', 'theme', 'useSystemPreference'],
 })
 export class WireStepper {
   protected el: HTMLWireStepperElement;

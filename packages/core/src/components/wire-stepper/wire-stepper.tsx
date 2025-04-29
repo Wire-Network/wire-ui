@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, h, State, Watch, Element } from '@stencil/core';
+import { ThemeService, ThemeConfig, ThemeState } from '../../utils/theme-service';
 
 export interface Step {
   id: string;
@@ -42,6 +43,12 @@ export class WireStepper {
   /** Optional custom CSS class */
   @Prop() customCssClass?: string;
 
+  /** Theme configuration */
+  @Prop() theme?: 'light' | 'dark';
+  @Prop() useSystemPreference: boolean = false;
+  @Prop() bgLight?: string;
+  @Prop() bgDark?: string;
+
   /** Step change event */
   @Event() stepChanged!: EventEmitter<number>;
 
@@ -52,6 +59,34 @@ export class WireStepper {
   @Event() cancelled!: EventEmitter<void>;
 
   @State() private isProcessing: boolean = false;
+  @State() themeState: ThemeState = {
+    currentTheme: 'light',
+    themeStyles: {}
+  };
+
+  private themeService: ThemeService;
+  private themeConfig: ThemeConfig;
+
+  constructor() {
+    this.themeService = ThemeService.getInstance();
+    this.themeConfig = {
+      theme: this.theme,
+      useSystemPreference: this.useSystemPreference,
+      bgLight: this.bgLight,
+      bgDark: this.bgDark
+    };
+  }
+
+  connectedCallback() {
+    this.themeService.connect(this, this.el, this.themeConfig, (state) => {
+      console.log('Stepper theme state changed:', state);
+      this.themeState = state;
+    });
+  }
+
+  disconnectedCallback() {
+    this.themeService.disconnect(this);
+  }
 
   @Watch('currentStep')
   handleCurrentStepChange(newValue: number) {
@@ -102,9 +137,17 @@ export class WireStepper {
   render() {
     const currentStep = this.steps[this.currentStep];
     const isLastStep = this.currentStep === this.steps.length - 1;
+    
+    console.log('Stepper rendering with theme:', this.themeState.currentTheme);
 
     return (
-      <div class={`wire-stepper ${this.orientation} ${this.customCssClass || ''}`}>
+      <div 
+        class={`wire-stepper ${this.orientation} ${this.customCssClass || ''} ${
+          this.themeState.currentTheme === 'dark' ? 'wire-stepper--dark' : ''
+        }`}
+        style={this.themeState.themeStyles}
+        data-theme={this.themeState.currentTheme}
+      >
         <div class="step-indicators">
           {this.steps.map((step, index) => (
             <div
@@ -113,6 +156,7 @@ export class WireStepper {
               }`}
               role="listitem"
               aria-current={index === this.currentStep ? 'step' : undefined}
+              data-theme={this.themeState.currentTheme}
             >
               <div class={`step-number ${this.stepNumberStyle}`}>
                 <div class="step-number-inner">
@@ -127,7 +171,7 @@ export class WireStepper {
           ))}
         </div>
 
-        <div class="step-content" role="tabpanel">
+        <div class="step-content" role="tabpanel" data-theme={this.themeState.currentTheme}>
           {(() => {
             switch (currentStep.contentType) {
               case 'html':
@@ -139,13 +183,16 @@ export class WireStepper {
             }
           })()}
 
-          <div class="navigation-buttons">
+          <div class="navigation-buttons" data-theme={this.themeState.currentTheme}>
             {this.showCancelButton && (
               <wire-button 
                 label={this.cancelButtonText}
                 buttonType="tertiary"
                 onClick={() => this.handleCancel()}
                 disabled={this.isProcessing}
+                useSystemPreference={this.useSystemPreference}
+                bgLight={this.bgLight}
+                bgDark={this.bgDark}
               ></wire-button>
             )}
 
@@ -155,6 +202,9 @@ export class WireStepper {
               buttonType="secondary"
               onClick={() => this.handlePrevious()}
               disabled={this.currentStep === 0 || this.isProcessing}
+              useSystemPreference={this.useSystemPreference}
+              bgLight={this.bgLight}
+              bgDark={this.bgDark}
             ></wire-button>
 
             <wire-button
@@ -163,6 +213,9 @@ export class WireStepper {
               buttonType="primary"
               onClick={() => this.handleNext()}
               disabled={this.isProcessing}
+              useSystemPreference={this.useSystemPreference}
+              bgLight={this.bgLight}
+              bgDark={this.bgDark}
             ></wire-button>
           </div>
         </div>

@@ -9,13 +9,34 @@
   --error-color: var(--red);
   --spacing-unit: 1rem;
   --half-spacing-unit: 0.5rem;
+  --wire-stepper-bg: #ffffff;
+  --wire-stepper-text: #333333;
+  --wire-stepper-border: var(--purple);
+  --wire-stepper-active: #007bff;
+  --wire-stepper-completed: var(--purple);
+  --wire-stepper-disabled: #6c757d;
+  --wire-stepper-hover: #f8f9fa;
+}
+
+.wire-stepper--dark {
+  --wire-stepper-bg: var(--wire-gray-90);
+  --wire-stepper-text: var(--wire-gray-05);
+  --wire-stepper-border: var(--purple);
+  --wire-stepper-active: var(--blue);
+  --wire-stepper-completed: var(--purple);
+  --wire-stepper-disabled: #868e96;
+  --wire-stepper-hover: #2d2d2d;
 }
 
 .wire-stepper {
   @apply flex flex-col w-full;
   gap: var(--spacing-unit);
   padding: var(--spacing-unit);
-  color: var(--text-color);
+  color: var(--wire-stepper-text);
+  background-color: var(--wire-stepper-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 /* Horizontal orientation */
@@ -47,7 +68,7 @@
     flex-direction: column;
     min-width: 200px;
     padding-right: var(--spacing-unit);
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid var(--wire-stepper-border);
   }
 
   .step-indicator {
@@ -98,7 +119,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--wire-stepper-border);
     font-weight: 400;
     position: relative;
   }
@@ -137,20 +158,23 @@
 /* Active state */
 .step-indicator.active {
   .step-number.numbers .step-number-inner {
-    background-color: var(--secondary-color);
+    background-color: var(--wire-stepper-active);
     color: white;
     font-weight: 700;
+    border-color: var(--wire-stepper-active);
   }
   
   .step-number.circles .step-number-inner {
-    @apply ring-1 ring-secondary;
+    @apply ring-1;
+    --tw-ring-color: var(--wire-stepper-active);
+    border-color: var(--wire-stepper-active);
 
     &::after {
       content: '';
       position: absolute;
       @apply w-3 h-3;
       border-radius: 50%;
-      background-color: var(--secondary-color);
+      background-color: var(--wire-stepper-active);
       transition: all 0.3s ease;
     }
   }
@@ -159,14 +183,14 @@
 /* Completed Steps */
 .step-indicator.completed {
   .step-number .step-number-inner {
-    background-color: var(--success-color);
+    background-color: var(--wire-stepper-completed);
     color: rgba(255, 255, 255, 0.65);
-    border-color: var(--success-color);
+    border-color: var(--wire-stepper-completed);
   }
 
   .step-number.circles .step-number-inner::after {
-    background-color: var(--success-color);
-    border-color: var(--success-color);
+    background-color: var(--wire-stepper-completed);
+    border-color: var(--wire-stepper-completed);
   }
 
   .step-number.circles .step-number-inner::before {
@@ -199,7 +223,7 @@
 .step-description {
   font-size: 9px;
   font-weight: 400;
-  color: var(--text-color);
+  color: var(--wire-stepper-disabled);
   opacity: 0.65;
   text-align: center;
 }
@@ -233,7 +257,7 @@
 
 .button.prev {
   background-color: var(--offwhite);
-  color: var(--text-color);
+  color: var(--wire-stepper-text);
 }
 
 .button.next {
@@ -259,11 +283,15 @@
   z-index: 1000;
 }
 
+:host(.wire-stepper--dark) .processing-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid var(--offwhite);
-  border-top-color: var(--primary-color);
+  border: 4px solid var(--wire-stepper-border);
+  border-top-color: var(--wire-stepper-active);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
