@@ -40,7 +40,7 @@
     --wire-button-bg-outline: rgba(29, 29, 29, 0.9);
     --wire-button-text-primary: var(--ion-color-text-light, var(--wire-color-text-primary-dark, #ffffff));
     --wire-button-text-secondary: var(--ion-color-primary, var(--wire-color-text-secondary-dark, #44B2F5));
-    --wire-button-text-secondary-gradient: var(--ion-color-light, var(--wire-color-text-secondary-gradient, #ffffff));
+    --wire-button-text-secondary-gradient: var(--ion-color-dark, var(--wire-color-text-secondary-gradient, #ffffff));
     --wire-button-text-tertiary: var(--ion-color-text-light, var(--wire-color-text-tertiary-dark, #ffffff));
     --wire-button-border-primary: var(--ion-color-primary, var(--wire-color-border-primary-dark, #44B2F5));
     --wire-button-border-secondary: var(--ion-color-secondary, var(--wire-color-border-secondary-dark, #AC5FE6));
@@ -144,7 +144,6 @@
 
     .wire-button__content {
       @apply relative rounded-[8px] transition-all duration-200;
-      background: var(--wire-button-bg-outline);
     }
 
     &.wire-button--color-blue {
@@ -157,7 +156,7 @@
 
     &.wire-button--color-gradient {
       &::before {
-        @apply content-[''] absolute inset-0 -z-10 bg-gradient-to-br from-primary to-secondary rounded-[9px] transition-all duration-200;
+        @apply content-[''] absolute inset-0 -z-10 bg-gradient-to-br from-[var(--wire-button-bg-primary)] to-[var(--wire-button-bg-secondary)] rounded-[9px] transition-all duration-200;
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         padding: 1px;

@@ -179,18 +179,7 @@ export class MyComponent {
       </div>
 
       <div class="my-grid-header">
-        <h2>Large</h2>
-      </div>
-      <div class="my-container light">
-        <div class="new-button">
-          <div class="new-button-inner">New Button</div>
-        </div>
-      </div>
-
-      <div class="my-container dark">
-        <div class="new-button">
-          <div class="new-button-inner">New Button</div>
-        </div>
+        <h2>Buttons</h2>
       </div>
       
       <div class="my-grid">
