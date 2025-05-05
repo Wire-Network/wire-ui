@@ -21,7 +21,6 @@
 | `prevButtonText`      | `prev-button-text`      |                                           | `string`                         | `'Back'`       |
 | `showCancelButton`    | `show-cancel-button`    |                                           | `boolean`                        | `false`        |
 | `stepNumberStyle`     | `step-number-style`     | Step number style: 'numbers' or 'circles' | `"circles" \| "numbers"`         | `'numbers'`    |
-| `steps`               | --                      | Array of step objects                     | `Step[]`                         | `[]`           |
 | `theme`               | `theme`                 | Theme configuration                       | `"dark" \| "light" \| undefined` | `undefined`    |
 | `useSystemPreference` | `use-system-preference` |                                           | `boolean`                        | `false`        |
 

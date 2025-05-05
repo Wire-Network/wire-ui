@@ -16,6 +16,8 @@
   --wire-stepper-completed: var(--purple);
   --wire-stepper-disabled: #6c757d;
   --wire-stepper-hover: #f8f9fa;
+  --wire-stepper-width: 100%;
+  --wire-stepper-height: auto;
 }
 
 .wire-stepper--dark {
@@ -29,7 +31,9 @@
 }
 
 .wire-stepper {
-  @apply flex flex-col w-full;
+  @apply flex flex-col;
+  width: var(--wire-stepper-width);
+  height: var(--wire-stepper-height);
   gap: var(--spacing-unit);
   color: var(--wire-stepper-text);
 }
@@ -48,6 +52,8 @@
   .step-indicator {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
     align-items: center;
     position: relative;
     z-index: 2;

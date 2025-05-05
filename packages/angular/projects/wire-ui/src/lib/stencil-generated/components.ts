@@ -96,14 +96,46 @@ export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({
-  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps', 'theme', 'useSystemPreference']
+  inputs: ['active', 'completed', 'description', 'disabled', 'id', 'title', 'validate']
+})
+@Component({
+  selector: 'wire-step',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['active', 'completed', 'description', 'disabled', 'id', 'title', 'validate'],
+})
+export class WireStep {
+  protected el: HTMLWireStepElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+    proxyOutputs(this, this.el, ['stepValidated', 'stepCompleted']);
+  }
+}
+
+
+export declare interface WireStep extends Components.WireStep {
+  /**
+   * Event emitted when the step is validated
+   */
+  stepValidated: EventEmitter<CustomEvent<{ id: string; isValid: boolean }>>;
+  /**
+   * Event emitted when the step is completed
+   */
+  stepCompleted: EventEmitter<CustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'theme', 'useSystemPreference']
 })
 @Component({
   selector: 'wire-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'steps', 'theme', 'useSystemPreference'],
+  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'theme', 'useSystemPreference'],
 })
 export class WireStepper {
   protected el: HTMLWireStepperElement;

@@ -12,6 +12,7 @@ export const WireButton = /*@__PURE__*/createReactComponent<JSX.WireButton, HTML
 export const WireCard = /*@__PURE__*/createReactComponent<JSX.WireCard, HTMLWireCardElement>('wire-card');
 export const WireIcon = /*@__PURE__*/createReactComponent<JSX.WireIcon, HTMLWireIconElement>('wire-icon');
 export const WireLogo = /*@__PURE__*/createReactComponent<JSX.WireLogo, HTMLWireLogoElement>('wire-logo');
+export const WireStep = /*@__PURE__*/createReactComponent<JSX.WireStep, HTMLWireStepElement>('wire-step');
 export const WireStepper = /*@__PURE__*/createReactComponent<JSX.WireStepper, HTMLWireStepperElement>('wire-stepper');
 export const WireTab = /*@__PURE__*/createReactComponent<JSX.WireTab, HTMLWireTabElement>('wire-tab');
 export const WireTabs = /*@__PURE__*/createReactComponent<JSX.WireTabs, HTMLWireTabsElement>('wire-tabs');

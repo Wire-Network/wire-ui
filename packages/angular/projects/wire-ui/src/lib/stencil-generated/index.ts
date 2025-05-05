@@ -6,6 +6,7 @@ export const DIRECTIVES = [
   d.WireCard,
   d.WireIcon,
   d.WireLogo,
+  d.WireStep,
   d.WireStepper,
   d.WireTab,
   d.WireTabs,
