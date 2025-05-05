@@ -3,7 +3,7 @@ import { Component, Prop, h, Event, EventEmitter, Element, State } from '@stenci
 @Component({
   tag: 'wire-step',
   styleUrl: 'wire-step.css',
-  shadow: true,
+  shadow: false,
 })
 export class WireStep {
   @Element() el!: HTMLElement;

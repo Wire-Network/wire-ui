@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-library",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Wire UI Component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
