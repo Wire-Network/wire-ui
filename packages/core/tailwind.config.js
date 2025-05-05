@@ -48,15 +48,15 @@ module.exports = {
 
 
         // Ionic Colors
-        primary: 'var(--ion-color-primary)',
-        secondary: 'var(--ion-color-secondary)',
-        tertiary: 'var(--ion-color-tertiary)',
-        success: 'var(--ion-color-success)',
-        warning: 'var(--ion-color-warning)',
-        danger: 'var(--ion-color-danger)',
-        light: 'var(--ion-color-light)',
-        medium: 'var(--ion-color-medium)',
-        dark: 'var(--ion-color-dark)',
+        primary: 'var(--blue)',
+        secondary: 'var(--purple)',
+        tertiary: 'var(--teal)',
+        success: 'var(--green)',
+        warning: 'var(--gold)',
+        danger: 'var(--red)',
+        light: 'var(--wire-gray-05)',
+        medium: 'var(--wire-gray-50)',
+        dark: 'var(--wire-gray-95)',
 
         // Background and Borders
         background: 'var(--ion-background-color)',

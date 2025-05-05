@@ -8,62 +8,7 @@ import { Component, h, State, Element } from '@stencil/core';
 export class MyComponent {
   @State() toastCount = 0;
   @State() isDarkMode = false;
-  @State() horizontalNumbersSteps: any[] = [];
-  @State() horizontalCirclesSteps: any[] = [];
-  @State() verticalNumbersSteps: any[] = [];
-  @State() verticalCirclesSteps: any[] = [];
   @Element() el!: HTMLElement;
-
-  componentWillLoad() {
-    this.initializeSteps();
-  }
-
-  private initializeSteps() {
-    this.horizontalNumbersSteps = this.createSteps('horizontal-numbers');
-    this.horizontalCirclesSteps = this.createSteps('horizontal-circles');
-    this.verticalNumbersSteps = this.createSteps('vertical-numbers');
-    this.verticalCirclesSteps = this.createSteps('vertical-circles');
-  }
-
-  private createSteps(prefix: string) {
-    const steps = [
-      {
-        id: `${prefix}-step1`,
-        title: 'Personal Info',
-        description: 'Please enter your name and email address.',
-        content: (
-          <div>
-            <h3>Personal Information</h3>
-            <p>Please enter your name and email address.</p>
-          </div>
-        )
-      },
-      {
-        id: `${prefix}-step2`,
-        title: 'Account Setup',
-        description: 'Choose a username and password for your account.',
-        content: (
-          <div>
-            <h3>Account Setup</h3>
-            <p>Choose a username and password for your account.</p>
-          </div>
-        )
-      },
-      {
-        id: `${prefix}-step3`,
-        title: 'Preferences',
-        description: 'Select your preferred settings and notifications.',
-        content: (
-          <div>
-            <h3>Preferences</h3>
-            <p>Select your preferred settings and notifications.</p>
-          </div>
-        )
-      }
-    ];
-
-    return steps;
-  }
 
   private showToast() {
     const toast = document.body.querySelector('wire-toast') as HTMLWireToastElement;
@@ -102,7 +47,6 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={this.horizontalNumbersSteps}
           orientation="horizontal"
           stepNumberStyle="numbers"
           nextButtonText="Continue"
@@ -110,7 +54,26 @@ export class MyComponent {
           finishButtonText="Complete"
           showCancelButton={true}
           cancelButtonText="Cancel"
-        ></wire-stepper>
+        >
+          <wire-step id="horizontal-numbers-step1" title="Personal Info" description="Please enter your name and email address">
+            <div>
+              <h3>Personal Information</h3>
+              <p>Please enter your name and email address.</p>
+            </div>
+          </wire-step>
+          <wire-step id="horizontal-numbers-step2" title="Account Setup" description="Choose a username and password for your account">
+            <div>
+              <h3>Account Setup</h3>
+              <p>Choose a username and password for your account.</p>
+            </div>
+          </wire-step>
+          <wire-step id="horizontal-numbers-step3" title="Preferences" description="Select your preferred settings and notifications">
+            <div>
+              <h3>Preferences</h3>
+              <p>Select your preferred settings and notifications.</p>
+            </div>
+          </wire-step>
+        </wire-stepper>
       </div>
 
       <div class="my-grid-header">
@@ -118,13 +81,31 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={this.horizontalCirclesSteps}
           orientation="horizontal"
           stepNumberStyle="circles"
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"
-        ></wire-stepper>
+        >
+          <wire-step id="horizontal-circles-step1" title="Personal Info" description="Please enter your name and email address">
+            <div>
+              <h3>Personal Information</h3>
+              <p>Please enter your name and email address.</p>
+            </div>
+          </wire-step>
+          <wire-step id="horizontal-circles-step2" title="Account Setup" description="Choose a username and password for your account">
+            <div>
+              <h3>Account Setup</h3>
+              <p>Choose a username and password for your account.</p>
+            </div>
+          </wire-step>
+          <wire-step id="horizontal-circles-step3" title="Preferences" description="Select your preferred settings and notifications">
+            <div>
+              <h3>Preferences</h3>
+              <p>Select your preferred settings and notifications.</p>
+            </div>
+          </wire-step>
+        </wire-stepper>
       </div>
 
       <div class="my-grid-header">
@@ -132,13 +113,31 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={this.verticalNumbersSteps}
           orientation="vertical"
           stepNumberStyle="numbers"
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"
-        ></wire-stepper>
+        >
+          <wire-step id="vertical-numbers-step1" title="Personal Info" description="Please enter your name and email address">
+            <div>
+              <h3>Personal Information</h3>
+              <p>Please enter your name and email address.</p>
+            </div>
+          </wire-step>
+          <wire-step id="vertical-numbers-step2" title="Account Setup" description="Choose a username and password for your account">
+            <div>
+              <h3>Account Setup</h3>
+              <p>Choose a username and password for your account.</p>
+            </div>
+          </wire-step>
+          <wire-step id="vertical-numbers-step3" title="Preferences" description="Select your preferred settings and notifications">
+            <div>
+              <h3>Preferences</h3>
+              <p>Select your preferred settings and notifications.</p>
+            </div>
+          </wire-step>
+        </wire-stepper>
       </div>
 
       <div class="my-grid-header">
@@ -146,13 +145,31 @@ export class MyComponent {
       </div>
       <div class="my-grid-header">
         <wire-stepper
-          steps={this.verticalCirclesSteps}
           orientation="vertical"
           stepNumberStyle="circles"
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"
-        ></wire-stepper>
+        >
+          <wire-step id="vertical-circles-step1" title="Personal Info" description="Please enter your name and email address">
+            <div>
+              <h3>Personal Information</h3>
+              <p>Please enter your name and email address.</p>
+            </div>
+          </wire-step>
+          <wire-step id="vertical-circles-step2" title="Account Setup" description="Choose a username and password for your account">
+            <div>
+              <h3>Account Setup</h3>
+              <p>Choose a username and password for your account.</p>
+            </div>
+          </wire-step>
+          <wire-step id="vertical-circles-step3" title="Preferences" description="Select your preferred settings and notifications">
+            <div>
+              <h3>Preferences</h3>
+              <p>Select your preferred settings and notifications.</p>
+            </div>
+          </wire-step>
+        </wire-stepper>
       </div>
 
       <div class="my-grid-header">
@@ -179,18 +196,7 @@ export class MyComponent {
       </div>
 
       <div class="my-grid-header">
-        <h2>Large</h2>
-      </div>
-      <div class="my-container light">
-        <div class="new-button">
-          <div class="new-button-inner">New Button</div>
-        </div>
-      </div>
-
-      <div class="my-container dark">
-        <div class="new-button">
-          <div class="new-button-inner">New Button</div>
-        </div>
+        <h2>Buttons</h2>
       </div>
       
       <div class="my-grid">
@@ -229,89 +235,7 @@ export class MyComponent {
         <wire-button label="New Button" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
         <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
         <wire-button label="New Button" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
-        
-        {/* <wire-button label="Button" color="blue" size="large"></wire-button>
-        <wire-button label="Button" color="blue" size="large" icon="coin" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="blue" size="large" icon="stack" iconPosition="right"></wire-button> */}
-
-        {/* <wire-button label="Button" color="secondary" size="large"></wire-button>
-        <wire-button label="Button" color="secondary" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" size="large" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" size="large"></wire-button>
-        <wire-button label="Button" color="tertiary" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" size="large" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="primary" variant="outline" size="large"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="large" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="secondary" variant="outline" size="large"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="large" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" variant="outline" size="large"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="large" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="large" icon="stack" iconPosition="right"></wire-button> */}
       </div>
-
-      {/* <div class="my-grid-header">
-        <h2>Medium (default)</h2>
-      </div>
-      <div class="my-grid">
-        <wire-button label="Button" color="primary" size="medium"></wire-button>
-        <wire-button label="Button" color="primary" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" size="medium" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="secondary" size="medium"></wire-button>
-        <wire-button label="Button" color="secondary" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" size="medium" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" size="medium"></wire-button>
-        <wire-button label="Button" color="tertiary" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" size="medium" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="primary" variant="outline" size="medium"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="medium" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="secondary" variant="outline" size="medium"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="medium" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" variant="outline" size="medium"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="medium" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="medium" icon="stack" iconPosition="right"></wire-button>
-      </div>
-
-      <div class="my-grid-header">
-        <h2>Small</h2>
-      </div>
-      <div class="my-grid">
-        <wire-button label="Button" color="primary" size="small"></wire-button>
-        <wire-button label="Button" color="primary" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" size="small" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="secondary" size="small"></wire-button>
-        <wire-button label="Button" color="secondary" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" size="small" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" size="small"></wire-button>
-        <wire-button label="Button" color="tertiary" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" size="small" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="primary" variant="outline" size="small"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="primary" variant="outline" size="small" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="secondary" variant="outline" size="small"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="secondary" variant="outline" size="small" icon="stack" iconPosition="right"></wire-button>
-
-        <wire-button label="Button" color="tertiary" variant="outline" size="small"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="small" icon="stack" iconPosition="left"></wire-button>
-        <wire-button label="Button" color="tertiary" variant="outline" size="small" icon="stack" iconPosition="right"></wire-button>
-      </div> */}
 
       <div class="my-grid-header">
         <h2>Icons</h2>

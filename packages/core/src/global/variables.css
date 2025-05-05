@@ -27,6 +27,13 @@
   --wire-gray-95: #1D1D1D;
   --wire-gray-05: #FFFFFD;
 
+  --wire-color-primary: var(--blue);
+  --wire-color-primary-dark: var(--blue-dark);
+  --wire-color-primary-light: var(--blue-light);
+  --wire-color-secondary: var(--purple);
+  --wire-color-secondary-dark: var(--purple-dark);
+  --wire-color-secondary-light: var(--purple-light);
+
   --gradient-primary: linear-gradient( 0deg, var(--blue) 0%, var(--purple) 100% );
   --gradient-primary-50: linear-gradient( 0deg, rgb(var(--blue-rgb),.3) 0%, rgb(var(--purple-rgb), .3) 100% );
   --button-gradient: linear-gradient(120deg, rgba(106,54,255,1) 0%, rgba(172,95,230,1) 40%, rgba(56,127,254,1) 80%, rgba(68,178,245,1) 100%);
@@ -81,7 +88,7 @@
   }
 
   /** Ionic Variables **/
-  --ion-color-primary: #3B81FE;
+  /* --ion-color-primary: #3B81FE;
   --ion-color-primary-rgb: 59,129,254;
   --ion-color-primary-contrast: #000000;
   --ion-color-primary-contrast-rgb: 0,0,0;
@@ -144,17 +151,17 @@
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255,255,255;
   --ion-color-dark-shade: #363636;
-  --ion-color-dark-tint: #505050;
+  --ion-color-dark-tint: #505050; */
 
   /* Ionic Underlying Colors */
-  --ion-background-color: #F8F7FB;
+  /* --ion-background-color: #F8F7FB;
   --ion-background-color-rgb: 255, 255, 255;
   --ion-border-color: #E3E3E3;
   --ion-toolbar-border-color: rgb(0, 0, 0, 0.15);
   --ion-item-border-color: rgb(0, 0, 0, 0.075);
   --ion-item-background: #ffffff;
   --ion-item-background-hover: #F4F4F2;
-  --ion-toolbar-background: #F4F4F2;
+  --ion-toolbar-background: #F4F4F2; */
 
   /* Social Media Colors */
   --facebook: #4267b2;
