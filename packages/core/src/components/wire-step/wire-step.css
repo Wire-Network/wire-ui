@@ -1,10 +1,5 @@
-:host {
-  display: none;
-  width: 100%;
-}
-
 .wire-step {
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
   opacity: 0;
@@ -14,15 +9,6 @@
 .wire-step.active {
   display: block;
   opacity: 1;
-}
-
-.wire-step.completed {
-  opacity: 0.7;
-}
-
-.wire-step.disabled {
-  pointer-events: none;
-  opacity: 0.5;
 }
 
 .wire-step.invalid {

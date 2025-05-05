@@ -65,9 +65,7 @@
   flex-direction: row;
 
   .step-indicators {
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
+    @apply flex flex-col w-1/3;
     padding-right: var(--spacing-unit);
     border-right: 1px solid var(--wire-stepper-border);
   }
@@ -81,6 +79,10 @@
   .step-info {
     padding: var(--half-spacing-unit) 0;
     @apply text-left items-start;
+  }
+
+  .step-content {
+    @apply w-2/3;
   }
 }
 
@@ -228,6 +230,10 @@
   color: var(--wire-stepper-disabled);
   opacity: 0.65;
   text-align: center;
+
+  .vertical & {
+    text-align: left;
+  }
 }
 
 .step-content {
