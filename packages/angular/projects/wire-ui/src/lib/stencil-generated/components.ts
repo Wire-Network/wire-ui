@@ -96,14 +96,14 @@ export declare interface WireLogo extends Components.WireLogo {}
 
 
 @ProxyCmp({
-  inputs: ['active', 'completed', 'description', 'disabled', 'id', 'title', 'validate']
+  inputs: ['active', 'completed', 'description', 'disabled', 'stepId', 'stepTitle', 'validate']
 })
 @Component({
   selector: 'wire-step',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['active', 'completed', 'description', 'disabled', 'id', 'title', 'validate'],
+  inputs: ['active', 'completed', 'description', 'disabled', 'stepId', 'stepTitle', 'validate'],
 })
 export class WireStep {
   protected el: HTMLWireStepElement;
