@@ -128,14 +128,14 @@ export declare interface WireStep extends Components.WireStep {
 
 
 @ProxyCmp({
-  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'theme', 'useSystemPreference']
+  inputs: ['bgDark', 'bgLight', 'border', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'orientationVertical', 'prevButtonText', 'showButtons', 'showCancelButton', 'stepNavigation', 'stepNumberStyle', 'theme', 'useSystemPreference']
 })
 @Component({
   selector: 'wire-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bgDark', 'bgLight', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'prevButtonText', 'showCancelButton', 'stepNumberStyle', 'theme', 'useSystemPreference'],
+  inputs: ['bgDark', 'bgLight', 'border', 'cancelButtonText', 'currentStep', 'customCssClass', 'finishButtonText', 'isLinear', 'nextButtonText', 'orientation', 'orientationVertical', 'prevButtonText', 'showButtons', 'showCancelButton', 'stepNavigation', 'stepNumberStyle', 'theme', 'useSystemPreference'],
 })
 export class WireStepper {
   protected el: HTMLWireStepperElement;
@@ -148,17 +148,11 @@ export class WireStepper {
 
 
 export declare interface WireStepper extends Components.WireStepper {
-  /**
-   * Step change event
-   */
+
   stepChanged: EventEmitter<CustomEvent<number>>;
-  /**
-   * Flow finished event
-   */
+
   finished: EventEmitter<CustomEvent<void>>;
-  /**
-   * Cancellation event
-   */
+
   cancelled: EventEmitter<CustomEvent<void>>;
 }
 
