@@ -9,6 +9,10 @@ import { ThemeService, ThemeConfig, ThemeState } from '../../utils/theme-service
 export class WireStepper {
   @Element() el!: HTMLElement;
 
+  @Event() stepChanged!: EventEmitter<number>;
+  @Event() finished!: EventEmitter<void>;
+  @Event() cancelled!: EventEmitter<void>;
+
   /** Initial step index */
   @Prop() currentStep: number = 0;
 
@@ -18,15 +22,21 @@ export class WireStepper {
   @Prop() finishButtonText: string = 'Finish';
   @Prop() cancelButtonText: string = 'Cancel';
   @Prop() showCancelButton: boolean = false;
+  @Prop() showButtons: boolean = true;
 
   /** Navigation mode: linear or non-linear */
   @Prop() isLinear: boolean = true;
 
   /** Orientation mode: horizontal or vertical */
   @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Prop() orientationVertical: 'top' | 'center' | 'sticky' = 'top';
 
-  /** Step number style: 'numbers' or 'circles' */
+  /** Step Options */
   @Prop() stepNumberStyle: 'numbers' | 'circles' = 'numbers';
+  @Prop() stepNavigation: boolean = false;
+
+  /** Border */
+  @Prop() border: boolean = true;
 
   /** Optional custom CSS class */
   @Prop() customCssClass?: string;
@@ -37,21 +47,17 @@ export class WireStepper {
   @Prop() bgLight?: string;
   @Prop() bgDark?: string;
 
-  /** Step change event */
-  @Event() stepChanged!: EventEmitter<number>;
-
-  /** Flow finished event */
-  @Event() finished!: EventEmitter<void>;
-
-  /** Cancellation event */
-  @Event() cancelled!: EventEmitter<void>;
-
   @State() private isProcessing: boolean = false;
   @State() private _currentStep: number = 0;
   @State() themeState: ThemeState = {
     currentTheme: 'light',
     themeStyles: {}
   };
+
+  /** Get the current step index */
+  public getCurrentStep(): number {
+    return this._currentStep;
+  }
 
   private themeService: ThemeService;
   private themeConfig: ThemeConfig;
@@ -127,6 +133,22 @@ export class WireStepper {
     return true;
   }
 
+  private async handleStepClick(index: number) {
+    if (!this.stepNavigation || this.isProcessing) return;
+    
+    // Allow going back to previous steps without validation
+    if (index < this._currentStep) {
+      this._currentStep = index;
+      return;
+    }
+
+    // For forward navigation, validate current step first
+    const isValid = await this.validateCurrentStep();
+    if (isValid) {
+      this._currentStep = index;
+    }
+  }
+
   private async handleNext() {
     if (this.isProcessing) return;
     
@@ -155,22 +177,23 @@ export class WireStepper {
 
     return (
       <div 
-        class={`wire-stepper ${this.orientation} ${this.customCssClass || ''} ${
+        class={`wire-stepper ${this.orientation} ${this.orientationVertical} ${this.customCssClass || ''} ${
           this.themeState.currentTheme === 'dark' ? 'wire-stepper--dark' : ''
         }`}
         style={this.themeState.themeStyles}
         data-theme={this.themeState.currentTheme}
       >
-        <div class="step-indicators">
+        <div class={`step-indicators ${this.border ? 'border' : ''}`}>
           {this.steps.map((step, index) => (
             <div
               key={`step-${step.id}-${index}`}
               class={`step-indicator ${index === this._currentStep ? 'active' : ''} ${
                 index < this._currentStep ? 'completed' : ''
-              }`}
+              } ${this.stepNavigation ? 'clickable' : ''}`}
               role="listitem"
               aria-current={index === this._currentStep ? 'step' : undefined}
               data-theme={this.themeState.currentTheme}
+              onClick={() => this.handleStepClick(index)}
             >
               <div class={`step-number ${this.stepNumberStyle}`}>
                 <div class="step-number-inner">
@@ -188,7 +211,8 @@ export class WireStepper {
         <div class="step-content" role="tabpanel" data-theme={this.themeState.currentTheme}>
           <slot></slot>
 
-          <div class="navigation-buttons" data-theme={this.themeState.currentTheme}>
+          {this.showButtons && (
+            <div class="navigation-buttons" data-theme={this.themeState.currentTheme}>
             {this.showCancelButton && (
               <wire-button 
                 label={this.cancelButtonText}
@@ -220,9 +244,10 @@ export class WireStepper {
               disabled={this.isProcessing}
               useSystemPreference={this.useSystemPreference}
               bgLight={this.bgLight}
-              bgDark={this.bgDark}
-            ></wire-button>
-          </div>
+                bgDark={this.bgDark}
+              ></wire-button>
+            </div>
+          )}
         </div>
 
         {this.isProcessing && (

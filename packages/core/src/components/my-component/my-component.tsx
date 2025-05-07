@@ -54,6 +54,9 @@ export class MyComponent {
           finishButtonText="Complete"
           showCancelButton={true}
           cancelButtonText="Cancel"
+          stepNavigation={true}
+          showButtons={false}
+          border={false}
         >
           <wire-step id="horizontal-numbers-step1" title="Personal Info" description="Please enter your name and email address">
             <div>
@@ -150,6 +153,7 @@ export class MyComponent {
           nextButtonText="Continue"
           prevButtonText="Previous"
           finishButtonText="Complete"
+          orientationVertical="sticky"
         >
           <wire-step id="vertical-circles-step1" title="Personal Info" description="Please enter your name and email address">
             <div>
