@@ -1,9 +1,9 @@
 import { HTMLStencilElement } from '@stencil/core/internal';
 
 export interface HTMLWireStepElement extends HTMLStencilElement {
-  title: string;
+  stepTitle: string;
   description?: string;
-  id: string;
+  stepId: string;
   disabled: boolean;
   active: boolean;
   completed: boolean;

@@ -186,7 +186,7 @@ export class WireStepper {
         <div class={`step-indicators ${this.border ? 'border' : ''}`}>
           {this.steps.map((step, index) => (
             <div
-              key={`step-${step.id}-${index}`}
+              key={`step-${step.stepId}-${index}`}
               class={`step-indicator ${index === this._currentStep ? 'active' : ''} ${
                 index < this._currentStep ? 'completed' : ''
               } ${this.stepNavigation ? 'clickable' : ''}`}
@@ -201,7 +201,7 @@ export class WireStepper {
                 </div>
               </div>
               <div class="step-info">
-                <div class="step-title">{step.title}</div>
+                <div class="step-title">{step.stepTitle}</div>
                 {step.description && <div class="step-description">{step.description}</div>}
               </div>
             </div>

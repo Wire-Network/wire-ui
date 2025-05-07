@@ -9,13 +9,13 @@ export class WireStep {
   @Element() el!: HTMLElement;
 
   /** The title of the step */
-  @Prop() title!: string;
+  @Prop() stepTitle!: string;
 
   /** Optional description for the step */
   @Prop() description?: string;
 
   /** Unique identifier for the step */
-  @Prop() id!: string;
+  @Prop() stepId!: string;
 
   /** Whether the step is disabled */
   @Prop() disabled: boolean = false;
@@ -40,8 +40,8 @@ export class WireStep {
 
   componentWillLoad() {
     // Generate an ID if none provided
-    if (!this.id) {
-      this.id = `step-${Math.random().toString(36).substr(2, 9)}`;
+    if (!this.stepId) {
+      this.stepId = `step-${Math.random().toString(36).substr(2, 9)}`;
     }
   }
 
@@ -52,12 +52,12 @@ export class WireStep {
     try {
       const result = await this.validate();
       this.isValid = result;
-      this.stepValidated.emit({ id: this.id, isValid: result });
+      this.stepValidated.emit({ id: this.stepId, isValid: result });
       return result;
     } catch (error) {
       console.error('Step validation failed:', error);
       this.isValid = false;
-      this.stepValidated.emit({ id: this.id, isValid: false });
+      this.stepValidated.emit({ id: this.stepId, isValid: false });
       return false;
     } finally {
       this.isProcessing = false;
@@ -66,7 +66,7 @@ export class WireStep {
 
   markAsCompleted() {
     this.completed = true;
-    this.stepCompleted.emit(this.id);
+    this.stepCompleted.emit(this.stepId);
   }
 
   render() {
@@ -81,7 +81,7 @@ export class WireStep {
           'processing': this.isProcessing
         }}
         role="tabpanel"
-        aria-labelledby={`step-${this.id}-title`}
+        aria-labelledby={`step-${this.stepId}-title`}
         aria-hidden={!this.active}
       >
         <div class="step-content">

@@ -8,6 +8,7 @@
   --success-color: var(--purple);
   --error-color: var(--red);
   --spacing-unit: 1rem;
+  --spacing-unit-gap: 1rem;
   --half-spacing-unit: 0.5rem;
   --wire-stepper-bg: #ffffff;
   --wire-stepper-text: #333333;
@@ -34,7 +35,7 @@
   @apply flex flex-col;
   width: var(--wire-stepper-width);
   height: var(--wire-stepper-height);
-  gap: var(--spacing-unit);
+  gap: var(--spacing-unit-gap);
   color: var(--wire-stepper-text);
 }
 
@@ -280,7 +281,7 @@
 
 .step-content {
   flex: 1;
-  padding: var(--spacing-unit);
+  padding: 0;
 }
 
 .navigation-buttons {
