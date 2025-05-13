@@ -30,6 +30,7 @@ export class WireButton {
   @Prop() loading: boolean = false;
   @Prop() icon?: string;
   @Prop() iconPosition: 'left' | 'right' = 'left';
+  @Prop() fullWidth: boolean = false;
 
   @State() themeState: ThemeState = {
     currentTheme: 'light',
@@ -119,6 +120,7 @@ export class WireButton {
           'wire-button--no-glow': !this.computedGlow,
           'wire-button--theme-dark': this.themeState.currentTheme === 'dark',
           'wire-button--theme-light': this.themeState.currentTheme === 'light',
+          'wire-button--full-width': this.fullWidth,
         }} 
         style={this.themeState.themeStyles}
       >
