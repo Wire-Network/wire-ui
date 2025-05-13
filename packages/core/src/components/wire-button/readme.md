@@ -14,12 +14,13 @@
 | `buttonType`          | `button-type`           |             | `"primary" \| "secondary" \| "tertiary"`                    | `'primary'` |
 | `color`               | `color`                 |             | `"blue" \| "gradient" \| "white" \| undefined`              | `undefined` |
 | `disabled`            | `disabled`              |             | `boolean`                                                   | `false`     |
+| `fullWidth`           | `full-width`            |             | `boolean`                                                   | `false`     |
 | `glow`                | `glow`                  |             | `boolean \| undefined`                                      | `undefined` |
 | `icon`                | `icon`                  |             | `string \| undefined`                                       | `undefined` |
 | `iconPosition`        | `icon-position`         |             | `"left" \| "right"`                                         | `'left'`    |
 | `label`               | `label`                 |             | `string \| undefined`                                       | `undefined` |
 | `loading`             | `loading`               |             | `boolean`                                                   | `false`     |
-| `size`                | `size`                  |             | `"large" \| "medium" \| "small"`                            | `'medium'`  |
+| `size`                | `size`                  |             | `"large" \| "medium" \| "small" \| number`                  | `'medium'`  |
 | `theme`               | `theme`                 |             | `"dark" \| "light" \| undefined`                            | `undefined` |
 | `useSystemPreference` | `use-system-preference` |             | `boolean`                                                   | `false`     |
 | `variant`             | `variant`               |             | `"gradient" \| "outline" \| "solid" \| "text" \| undefined` | `undefined` |
