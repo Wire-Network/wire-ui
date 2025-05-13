@@ -13,6 +13,8 @@ export class WireCard {
   @Prop() iconSize: 'small' | 'medium' | 'large' | number = 'medium';
   @Prop() actions?: HTMLElement;
   @Prop() theme?: 'light' | 'dark';
+  @Prop() shadow: boolean = true;
+  @Prop() border: 'default' | 'primary' | 'secondary' | 'featured' = 'default';
 
   @State() currentTheme: 'light' | 'dark' = 'light';
 
@@ -59,21 +61,30 @@ export class WireCard {
   }
 
   render() {
+    const hasHeader = this.heading || this.el.querySelector('[slot="actions"]');
+    
     return (
       <div class={{
         'wire-card': true,
         'wire-card--theme-light': this.currentTheme === 'light',
-        'wire-card--theme-dark': this.currentTheme === 'dark'
+        'wire-card--theme-dark': this.currentTheme === 'dark',
+        'wire-card--no-shadow': !this.shadow,
+        'wire-card--border-default': this.border === 'default',
+        'wire-card--border-primary': this.border === 'primary',
+        'wire-card--border-secondary': this.border === 'secondary',
+        'wire-card--border-featured': this.border === 'featured'
       }}>
-        <header>
-          <h3 class="title">
-            {this.icon && <wire-icon name={this.icon} size={this.iconSize} />}
-            {this.heading}
-          </h3>
-          <div class="actions">
-            <slot name="actions"></slot>
-          </div>
-        </header>
+        {hasHeader && (
+          <header>
+            <h3 class="title">
+              {this.icon && <wire-icon name={this.icon} size={this.iconSize} />}
+              {this.heading}
+            </h3>
+            <div class="actions">
+              <slot name="actions"></slot>
+            </div>
+          </header>
+        )}
         <div class="body">
           <slot></slot>
         </div>

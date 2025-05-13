@@ -191,9 +191,27 @@ export class MyComponent {
         <h2>Cards</h2>
       </div>
       <div class="my-grid-header">
-        <wire-card heading="Card Title" icon="stack">
+        <wire-card heading="Default Card" icon="stack">
           <div slot="actions">
-            <wire-button label="Button" color="blue" variant="outline" size="small"></wire-button>
+            <wire-button label="Button" color="blue" buttonType="secondary" size="small"></wire-button>
+          </div>
+          Card content…
+        </wire-card>
+
+        <wire-card heading="Primary Border, No Shadow" icon="stack" border="primary" shadow={false}>
+          <div slot="actions">
+            <wire-button label="Button" color="blue" buttonType="secondary" size="small"></wire-button>
+          </div>
+          Card content…
+        </wire-card>
+
+        <wire-card icon="stack" border="secondary">
+          Secondary border without any heading or actions…
+        </wire-card>
+
+        <wire-card heading="Featured card" icon="stack" border="featured">
+          <div slot="actions">
+            <wire-button label="Button" color="gradient" buttonType="primary" size="small"></wire-button>
           </div>
           Card content…
         </wire-card>

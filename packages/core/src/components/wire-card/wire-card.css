@@ -2,11 +2,57 @@
   display: block;
   
   .wire-card {
-    @apply block rounded-3xl border ring-[1px] px-6 py-5 mb-6 shadow-md box-border;
+    @apply block rounded-3xl border ring-[1px] px-6 py-5 mb-6 box-border;
+  }
+
+  .wire-card:not(.wire-card--no-shadow) {
+    @apply shadow-md;
+  }
+
+  .wire-card--border-primary {
+    @apply border-2 ring-2;
+    border-color: var(--wire-color-primary);
+    --tw-ring-color: var(--wire-color-primary);
+  }
+
+  .wire-card--border-secondary {
+    @apply border-2 ring-2;
+    border-color: var(--wire-color-secondary);
+    --tw-ring-color: var(--wire-color-secondary);
+  }
+
+  .wire-card--border-featured {
+    @apply border-2 ring-2 relative;
+    border-color: transparent;
+    --tw-ring-color: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 1.5rem;
+      padding: 2px;
+      background: linear-gradient(to bottom right, var(--wire-color-secondary), var(--wire-color-primary));
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+
+  .wire-card--border-default {
+    &.wire-card--theme-light {
+        @apply border-gray-200 ring-gray-200;  
+    }
+
+    &.wire-card--theme-dark {
+      @apply border-gray-800 ring-gray-800;
+    }
   }
 
   .wire-card--theme-light {
-    @apply border-gray-200 ring-gray-200;
     background: var(--wire-gray-05);
 
     .body {
@@ -19,7 +65,6 @@
   }
 
   .wire-card--theme-dark {
-    @apply border-gray-800 ring-gray-800;
     background: var(--wire-gray-90);
 
     .body {
