@@ -58,19 +58,19 @@ export class MyComponent {
           showButtons={false}
           border={false}
         >
-          <wire-step id="horizontal-numbers-step1" title="Personal Info" description="Please enter your name and email address">
+          <wire-step stepId="horizontal-numbers-step1" stepTitle="Personal Info" description="Please enter your name and email address">
             <div>
               <h3>Personal Information</h3>
               <p>Please enter your name and email address.</p>
             </div>
           </wire-step>
-          <wire-step id="horizontal-numbers-step2" title="Account Setup" description="Choose a username and password for your account">
+          <wire-step stepId="horizontal-numbers-step2" stepTitle="Account Setup" description="Choose a username and password for your account">
             <div>
               <h3>Account Setup</h3>
               <p>Choose a username and password for your account.</p>
             </div>
           </wire-step>
-          <wire-step id="horizontal-numbers-step3" title="Preferences" description="Select your preferred settings and notifications">
+          <wire-step stepId="horizontal-numbers-step3" stepTitle="Preferences" description="Select your preferred settings and notifications">
             <div>
               <h3>Preferences</h3>
               <p>Select your preferred settings and notifications.</p>
@@ -90,19 +90,19 @@ export class MyComponent {
           prevButtonText="Previous"
           finishButtonText="Complete"
         >
-          <wire-step id="horizontal-circles-step1" title="Personal Info" description="Please enter your name and email address">
+          <wire-step stepId="horizontal-circles-step1" stepTitle="Personal Info" description="Please enter your name and email address">
             <div>
               <h3>Personal Information</h3>
               <p>Please enter your name and email address.</p>
             </div>
           </wire-step>
-          <wire-step id="horizontal-circles-step2" title="Account Setup" description="Choose a username and password for your account">
+          <wire-step stepId="horizontal-circles-step2" stepTitle="Account Setup" description="Choose a username and password for your account">
             <div>
               <h3>Account Setup</h3>
               <p>Choose a username and password for your account.</p>
             </div>
           </wire-step>
-          <wire-step id="horizontal-circles-step3" title="Preferences" description="Select your preferred settings and notifications">
+          <wire-step stepId="horizontal-circles-step3" stepTitle="Preferences" description="Select your preferred settings and notifications">
             <div>
               <h3>Preferences</h3>
               <p>Select your preferred settings and notifications.</p>
@@ -122,19 +122,19 @@ export class MyComponent {
           prevButtonText="Previous"
           finishButtonText="Complete"
         >
-          <wire-step id="vertical-numbers-step1" title="Personal Info" description="Please enter your name and email address">
+          <wire-step stepId="vertical-numbers-step1" stepTitle="Personal Info" description="Please enter your name and email address">
             <div>
               <h3>Personal Information</h3>
               <p>Please enter your name and email address.</p>
             </div>
           </wire-step>
-          <wire-step id="vertical-numbers-step2" title="Account Setup" description="Choose a username and password for your account">
+          <wire-step stepId="vertical-numbers-step2" stepTitle="Account Setup" description="Choose a username and password for your account">
             <div>
               <h3>Account Setup</h3>
               <p>Choose a username and password for your account.</p>
             </div>
           </wire-step>
-          <wire-step id="vertical-numbers-step3" title="Preferences" description="Select your preferred settings and notifications">
+          <wire-step stepId="vertical-numbers-step3" stepTitle="Preferences" description="Select your preferred settings and notifications">
             <div>
               <h3>Preferences</h3>
               <p>Select your preferred settings and notifications.</p>
@@ -155,19 +155,19 @@ export class MyComponent {
           finishButtonText="Complete"
           orientationVertical="sticky"
         >
-          <wire-step id="vertical-circles-step1" title="Personal Info" description="Please enter your name and email address">
+          <wire-step stepId="vertical-circles-step1" stepTitle="Personal Info" description="Please enter your name and email address">
             <div>
               <h3>Personal Information</h3>
               <p>Please enter your name and email address.</p>
             </div>
           </wire-step>
-          <wire-step id="vertical-circles-step2" title="Account Setup" description="Choose a username and password for your account">
+          <wire-step stepId="vertical-circles-step2" stepTitle="Account Setup" description="Choose a username and password for your account">
             <div>
               <h3>Account Setup</h3>
               <p>Choose a username and password for your account.</p>
             </div>
           </wire-step>
-          <wire-step id="vertical-circles-step3" title="Preferences" description="Select your preferred settings and notifications">
+          <wire-step stepId="vertical-circles-step3" stepTitle="Preferences" description="Select your preferred settings and notifications">
             <div>
               <h3>Preferences</h3>
               <p>Select your preferred settings and notifications.</p>
