@@ -25,7 +25,7 @@ export class WireButton {
   @Prop() bgDark?: string;
   @Prop() useSystemPreference: boolean = false;
   @Prop() label?: string;
-  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
+  @Prop() size: 'small' | 'medium' | 'large' | number = 'medium';
   @Prop() disabled: boolean = false;
   @Prop() loading: boolean = false;
   @Prop() icon?: string;

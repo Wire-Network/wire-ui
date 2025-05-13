@@ -30,14 +30,14 @@ export declare interface WireButton extends Components.WireButton {}
 
 
 @ProxyCmp({
-  inputs: ['actions', 'heading', 'icon', 'theme']
+  inputs: ['actions', 'heading', 'icon', 'iconSize', 'theme']
 })
 @Component({
   selector: 'wire-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actions', 'heading', 'icon', 'theme'],
+  inputs: ['actions', 'heading', 'icon', 'iconSize', 'theme'],
 })
 export class WireCard {
   protected el: HTMLWireCardElement;

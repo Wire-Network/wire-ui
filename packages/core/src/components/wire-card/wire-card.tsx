@@ -10,6 +10,7 @@ export class WireCard {
   @Element() el!: HTMLElement;
   @Prop() heading?: string;
   @Prop() icon?: string;
+  @Prop() iconSize: 'small' | 'medium' | 'large' | number = 'medium';
   @Prop() actions?: HTMLElement;
   @Prop() theme?: 'light' | 'dark';
 
@@ -66,7 +67,7 @@ export class WireCard {
       }}>
         <header>
           <h3 class="title">
-            {this.icon && <wire-icon name={this.icon} size="medium" />}
+            {this.icon && <wire-icon name={this.icon} size={this.iconSize} />}
             {this.heading}
           </h3>
           <div class="actions">

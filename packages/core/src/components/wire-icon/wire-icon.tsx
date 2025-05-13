@@ -8,7 +8,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 })
 export class WireIcon {
   @Prop() name!: string;
-  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
+  @Prop() size: 'small' | 'medium' | 'large' | number = 'medium';
   @Prop() color?: string;
   
   @State() private svgContent: string = '';
@@ -36,9 +36,11 @@ export class WireIcon {
 
   render() {
     const style = this.color ? { color: this.color } : {};
+    const sizeClass = typeof this.size === 'number' ? 'icon--custom' : `icon--${this.size}`;
+    const customStyle = typeof this.size === 'number' ? { width: `${this.size}px`, height: `${this.size}px` } : {};
     
     return (
-      <div class={`icon icon--${this.size}`} innerHTML={this.svgContent} style={style}></div>
+      <div class={`icon ${sizeClass}`} innerHTML={this.svgContent} style={{ ...style, ...customStyle }}></div>
     );
   }
 }
