@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-library",
-  "version": "0.1.19-alpha.4",
+  "version": "0.1.19-alpha.5",
   "description": "Wire UI Component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -31,7 +31,7 @@
       "import": "./dist/components/index.js",
       "require": "./dist/components/index.cjs.js"
     },
-    "./assets/*": "./dist/assets/*"
+    "./dist/wire-ui/fonts/*": "./dist/wire-ui/fonts/*"
   },
   "files": [
     "dist/",
