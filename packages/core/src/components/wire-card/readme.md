@@ -9,7 +9,7 @@
 
 | Property   | Attribute   | Description | Type                                                  | Default     |
 | ---------- | ----------- | ----------- | ----------------------------------------------------- | ----------- |
-| `actions`  | --          |             | `HTMLElement \| undefined`                            | `undefined` |
+| `actions`  | `actions`   |             | `HTMLElement \| undefined`                            | `undefined` |
 | `border`   | `border`    |             | `"default" \| "featured" \| "primary" \| "secondary"` | `'default'` |
 | `heading`  | `heading`   |             | `string \| undefined`                                 | `undefined` |
 | `icon`     | `icon`      |             | `string \| undefined`                                 | `undefined` |

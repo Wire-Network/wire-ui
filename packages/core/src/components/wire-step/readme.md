@@ -15,7 +15,7 @@
 | `disabled`               | `disabled`    | Whether the step is disabled         | `boolean`                                          | `false`     |
 | `stepId` _(required)_    | `step-id`     | Unique identifier for the step       | `string`                                           | `undefined` |
 | `stepTitle` _(required)_ | `step-title`  | The title of the step                | `string`                                           | `undefined` |
-| `validate`               | --            | Validation function for the step     | `(() => boolean \| Promise<boolean>) \| undefined` | `undefined` |
+| `validate`               | `validate`    | Validation function for the step     | `(() => boolean \| Promise<boolean>) \| undefined` | `undefined` |
 
 
 ## Events

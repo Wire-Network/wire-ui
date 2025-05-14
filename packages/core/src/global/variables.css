@@ -4,8 +4,8 @@
 /* Sora Font */
 @font-face {
   font-family: 'Sora';
-  src: url('/dist/wire-ui/fonts/sora/Sora-Regular.woff2') format('woff2'),
-       url('/dist/wire-ui/fonts/sora/Sora-Regular.woff') format('woff');
+  src: url('../fonts/sora/Sora-Regular.woff2') format('woff2'),
+       url('../fonts/sora/Sora-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,8 +13,8 @@
 
 @font-face {
   font-family: 'Sora';
-  src: url('/dist/wire-ui/fonts/sora/Sora-Medium.woff2') format('woff2'),
-       url('/dist/wire-ui/fonts/sora/Sora-Medium.woff') format('woff');
+  src: url('../fonts/sora/Sora-Medium.woff2') format('woff2'),
+       url('../fonts/sora/Sora-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -22,8 +22,8 @@
 
 @font-face {
   font-family: 'Sora';
-  src: url('/dist/wire-ui/fonts/sora/Sora-SemiBold.woff2') format('woff2'),
-       url('/dist/wire-ui/fonts/sora/Sora-SemiBold.woff') format('woff');
+  src: url('../fonts/sora/Sora-SemiBold.woff2') format('woff2'),
+       url('../fonts/sora/Sora-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
