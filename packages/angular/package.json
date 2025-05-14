@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-angular",
-  "version": "0.1.19-alpha.9",
+  "version": "0.1.19",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -17,7 +17,7 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: 'loader',
       copy: [
-        { src: 'assets/fonts', dest: 'wire-ui/fonts' }
+        { src: 'assets/fonts', dest: 'fonts' }
       ]
     },
     // Custom elements bundle
@@ -55,7 +55,7 @@ export const config: Config = {
       buildDir: 'build',
       copy: [
         { src: 'components/assets', dest: 'build/assets' },
-        { src: 'assets/fonts', dest: 'build/wire-ui/fonts' }
+        { src: 'assets/fonts', dest: 'build/fonts' }
       ]
     }
   ],
