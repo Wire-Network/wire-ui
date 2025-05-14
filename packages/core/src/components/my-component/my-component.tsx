@@ -191,9 +191,27 @@ export class MyComponent {
         <h2>Cards</h2>
       </div>
       <div class="my-grid-header">
-        <wire-card heading="Card Title" icon="stack">
+        <wire-card heading="Default Card" icon="stack">
           <div slot="actions">
-            <wire-button label="Button" color="blue" variant="outline" size="small"></wire-button>
+            <wire-button label="Button" color="blue" buttonType="secondary" size="small"></wire-button>
+          </div>
+          Card content…
+        </wire-card>
+
+        <wire-card heading="Primary Border, No Shadow" icon="stack" border="primary" shadow={false}>
+          <div slot="actions">
+            <wire-button label="Button" color="blue" buttonType="secondary" size="small"></wire-button>
+          </div>
+          Card content…
+        </wire-card>
+
+        <wire-card icon="stack" border="secondary">
+          Secondary border without any heading or actions…
+        </wire-card>
+
+        <wire-card heading="Featured card" icon="stack" border="featured">
+          <div slot="actions">
+            <wire-button label="Button" color="gradient" buttonType="primary" size="small"></wire-button>
           </div>
           Card content…
         </wire-card>
@@ -204,41 +222,40 @@ export class MyComponent {
       </div>
       
       <div class="my-grid">
-        <wire-button label="New Button" buttonType="primary" size="small" color="gradient"></wire-button>
-        <wire-button label="New Button" buttonType="primary" size="medium" color="gradient"></wire-button>
-        <wire-button label="New Button" buttonType="primary" size="large" color="gradient"></wire-button>
-        
-        <wire-button label="New Button" buttonType="primary" size="small"></wire-button>
-        <wire-button label="New Button" buttonType="primary"></wire-button>
-        <wire-button label="New Button" buttonType="primary" size="large"></wire-button>
+        <wire-button label="Primary Button" buttonType="primary" size="small"></wire-button>
+        <wire-button label="Primary Button" buttonType="primary"></wire-button>
+        <wire-button label="Primary Button" buttonType="primary" size="large"></wire-button>
 
-        <wire-button label="New Button" buttonType="secondary" size="small" color="gradient"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="large" color="gradient"></wire-button>
+        <wire-button label="Secondary Button" buttonType="secondary" size="small"></wire-button>
+        <wire-button label="Secondary Button" buttonType="secondary" size="medium"></wire-button>
+        <wire-button label="Secondary Button" buttonType="secondary" size="large"></wire-button>
 
-        <wire-button label="New Button" buttonType="secondary" size="small"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="medium"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="large"></wire-button>
+        <wire-button label="Tertiary Button" buttonType="tertiary" size="small"></wire-button>
+        <wire-button label="Tertiary Button" buttonType="tertiary"></wire-button>
+        <wire-button label="Tertiary Button" buttonType="tertiary" size="large"></wire-button>
 
-        <wire-button label="New Button" buttonType="secondary" size="small" glow={true}></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="medium" glow={true}></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="large" glow={true}></wire-button>
+        <wire-button label="Featured Primary" buttonType="primary" size="small" color="gradient"></wire-button>
+        <wire-button label="Featured Primary" buttonType="primary" size="medium" color="gradient"></wire-button>
+        <wire-button label="Featured Primary" buttonType="primary" size="large" color="gradient"></wire-button>
 
-        <wire-button label="New Button" buttonType="tertiary" size="small"></wire-button>
-        <wire-button label="New Button" buttonType="tertiary"></wire-button>
-        <wire-button label="New Button" buttonType="tertiary" size="large"></wire-button>
+        <wire-button label="Featured Secondary" buttonType="secondary" size="small" color="gradient"></wire-button>
+        <wire-button label="Featured Secondary" buttonType="secondary" size="medium" color="gradient"></wire-button>
+        <wire-button label="Featured Secondary" buttonType="secondary" size="large" color="gradient"></wire-button>
 
-        <wire-button label="New Button" buttonType="primary" size="small" color="gradient" icon="search"></wire-button>
-        <wire-button label="New Button" buttonType="primary" size="medium" color="gradient" icon="stack"></wire-button>
-        <wire-button label="New Button" buttonType="primary" size="large" color="gradient" icon="stack"></wire-button>
+        <wire-button label="Icon Primary" buttonType="primary" size="small" color="gradient" icon="search"></wire-button>
+        <wire-button label="Icon Primary" buttonType="primary" size="medium" color="gradient" icon="stack"></wire-button>
+        <wire-button label="Icon Primary" buttonType="primary" size="large" color="gradient" icon="stack"></wire-button>
 
-        <wire-button label="New Button" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right"></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="Icon Secondary" buttonType="secondary" size="small" color="gradient" icon="stack" glow={true}></wire-button>
+        <wire-button label="Icon Secondary" buttonType="secondary" size="medium" color="gradient" icon="stack" glow={true}></wire-button>
+        <wire-button label="Icon Secondary" buttonType="secondary" size="large" color="gradient" icon="stack" glow={true}></wire-button>
 
-        <wire-button label="New Button" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
-        <wire-button label="New Button" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right" glow={true}></wire-button>
+        <wire-button label="Icon Right" buttonType="secondary" size="small" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="Icon Right" buttonType="secondary" size="medium" color="gradient" icon="stack" iconPosition="right"></wire-button>
+        <wire-button label="Icon Right" buttonType="secondary" size="large" color="gradient" icon="stack" iconPosition="right"></wire-button>
+      </div>
+      <div class="my-grid-header">
+        <wire-button label="Full Width Button" buttonType="primary" color="gradient" fullWidth={true}></wire-button>
       </div>
 
       <div class="my-grid-header">

@@ -57,6 +57,10 @@
     @apply flex justify-center items-center gap-2 transition-all duration-200;
   }
 
+  .wire-button--full-width {
+    @apply w-full;
+  }
+
   /* Size variants */
   .wire-button--size-small {
     @apply text-xs;

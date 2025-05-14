@@ -8,14 +8,14 @@ import { Components } from '@wireio/ui-library';
 
 
 @ProxyCmp({
-  inputs: ['bgDark', 'bgLight', 'buttonType', 'color', 'disabled', 'glow', 'icon', 'iconPosition', 'label', 'loading', 'size', 'theme', 'useSystemPreference', 'variant']
+  inputs: ['bgDark', 'bgLight', 'buttonType', 'color', 'disabled', 'fullWidth', 'glow', 'icon', 'iconPosition', 'label', 'loading', 'size', 'theme', 'useSystemPreference', 'variant']
 })
 @Component({
   selector: 'wire-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['bgDark', 'bgLight', 'buttonType', 'color', 'disabled', 'glow', 'icon', 'iconPosition', 'label', 'loading', 'size', 'theme', 'useSystemPreference', 'variant'],
+  inputs: ['bgDark', 'bgLight', 'buttonType', 'color', 'disabled', 'fullWidth', 'glow', 'icon', 'iconPosition', 'label', 'loading', 'size', 'theme', 'useSystemPreference', 'variant'],
 })
 export class WireButton {
   protected el: HTMLWireButtonElement;
@@ -30,14 +30,14 @@ export declare interface WireButton extends Components.WireButton {}
 
 
 @ProxyCmp({
-  inputs: ['actions', 'heading', 'icon', 'theme']
+  inputs: ['actions', 'border', 'heading', 'icon', 'iconSize', 'shadow', 'theme']
 })
 @Component({
   selector: 'wire-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['actions', 'heading', 'icon', 'theme'],
+  inputs: ['actions', 'border', 'heading', 'icon', 'iconSize', 'shadow', 'theme'],
 })
 export class WireCard {
   protected el: HTMLWireCardElement;

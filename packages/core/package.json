@@ -1,6 +1,6 @@
 {
   "name": "@wireio/ui-library",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Wire UI Component Library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -31,7 +31,8 @@
       "import": "./dist/components/index.js",
       "require": "./dist/components/index.cjs.js"
     },
-    "./assets/*": "./dist/assets/*"
+    "./dist/wire-ui/fonts/*": "./dist/wire-ui/fonts/*",
+    "./css": "./dist/wire-ui/wire-ui.css"
   },
   "files": [
     "dist/",
@@ -66,8 +67,10 @@
     "@tailwindcss/forms": "^0.5.10",
     "@types/node": "^16.18.11",
     "autoprefixer": "^10.4.20",
+    "fontmin": "^2.0.0",
     "puppeteer": "^24.2.0",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "ttf2woff2": "^6.0.1"
   },
   "license": "MIT",
   "publishConfig": {

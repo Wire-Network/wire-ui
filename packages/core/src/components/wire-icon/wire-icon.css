@@ -27,5 +27,8 @@
     width: 32px;
     height: 32px;
   }
-  
+
+  .icon--custom {
+    /* Custom sizes will be handled by inline styles */
+  }
 }
